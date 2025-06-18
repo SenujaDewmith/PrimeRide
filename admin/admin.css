@@ -1,0 +1,178 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin-top: 100px;
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    width: 250px;
+    position: fixed;
+    height: 100%;
+    background-color: #d4002a;
+    color: #fff;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    padding: 15px;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #a00020;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Header Styles */
+header {
+    background-color: #d4002a;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+header img.navlogo {
+    height: 50px;
+    margin-right: 20px;
+}
+
+/* Table Styles */
+.table {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: #d4002a;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+.table tbody td {
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Form and Select Elements */
+select.form-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+select.form-select:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Buttons */
+button.btn {
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-success {
+    background-color: #28a745;
+    border: none;
+    color: #fff;
+}
+
+button.btn-primary {
+    background-color: #d4002a;
+    border: none;
+    color: #fff;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: #fff;
+}
+
+button.btn:hover {
+    opacity: 0.9;
+}
+
+/* Modal Styles */
+.modal-header {
+    background-color: #d4002a;
+    color: white;
+}
+
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #d4002a;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .table {
+        font-size: 12px;
+    }
+
+    button.btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    select.form-select {
+        padding: 6px;
+    }
+}
