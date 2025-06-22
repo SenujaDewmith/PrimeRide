@@ -4,16 +4,16 @@ session_start();
 
 $user_data = null;
 
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
 
-    echo "<script>console.log('Session username: " . $username . "');</script>";
+    echo "<script>console.log('Session email: " . $email . "');</script>";
 
-    $sql = "SELECT username, name, email FROM clients WHERE username = ?";
+    $sql = "SELECT name, email FROM clients WHERE email = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt) {
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -78,7 +78,7 @@ if (isset($_SESSION['username'])) {
 
       <?php
       // Fetch all available vehicles from the database
-      $sql = "SELECT vehicle_name, model, seats, fuel_type, transmission, image_path, price_perday, license_plate FROM vehicles";
+      $sql = "SELECT id, vehicle_name, model, seats, fuel_type, transmission, image_path, price_perday, license_plate FROM vehicles";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -133,11 +133,14 @@ if (isset($_SESSION['username'])) {
           <input type="hidden" name="vehicle_name" id="modalVehicleName">
           <input type="hidden" name="model" id="modalModel">
           <input type="hidden" name="plate_number" id="modalPlateNumber">
+          <input type="hidden" name="id" id="id">
+         
+         
 
           <div class="mb-3">
-            <label for="customer_username" class="form-label">Username</label>
-            <input type="text" class="form-control" name="customer_username" id="customer_username" 
-                   value="<?php echo isset($user_data) ? htmlspecialchars($user_data['username']) : ''; ?>" 
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" name="email" id="email" 
+                   value="<?php echo isset($user_data) ? htmlspecialchars($user_data['email']) : ''; ?>" 
                    <?php echo isset($user_data) ? 'readonly' : ''; ?>>
           </div>
 
@@ -160,10 +163,7 @@ if (isset($_SESSION['username'])) {
             <input type="tel" class="form-control" name="contact_number" required>
           </div>
 
-          <div class="mb-3">
-            <label for="rental_duration" class="form-label">Rental Duration (days)</label>
-            <input type="number" class="form-control" name="rental_duration" readonly>
-          </div>
+          
 
           <div class="mb-3">
             <label for="pickup_date" class="form-label">Pickup Date</label>
@@ -173,6 +173,10 @@ if (isset($_SESSION['username'])) {
           <div class="mb-3">
             <label for="dropoff_date" class="form-label">Drop-off Date</label>
             <input type="date" class="form-control" name="dropoff_date" required>
+          </div>
+          <div class="mb-3">
+            <label for="rental_duration" class="form-label">Rental Duration (days)</label>
+            <input type="number" class="form-control" name="rental_duration" readonly>
           </div>
 
           <div class="mb-3">

@@ -5,109 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Car Rental Admin Dashboard</title>
   <link rel="stylesheet" href="admin.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-}
+  
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <script defer src="../assets/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="vehiclemanagement.css"/>
 
-.header {
-  background-color: #343a40;
-  color: white;
-  padding: 1rem;
-  position: relative;
-  z-index: 1;
-}
-
-.header h1 {
-  font-size: 1.8rem;
-  margin-left: 1rem;
-}
-
-.navlogo {
-  width: 50px;
-  height: auto;
-}
-
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.sidebar {
-  height: calc(100vh - 70px);
-  width: 220px;
-  position: fixed;
-  top: 70px;
-  left: 0;
-  background-color: #495057;
-  padding-top: 20px;
-  transition: 0.3s;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.sidebar a {
-  padding: 15px 25px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #f8f9fa;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidebar a:hover {
-  background-color: #343a40;
-  color: #fff;
-}
-
-.sidebar a.active {
-  background-color: #17a2b8;
-  color: white;
-  font-weight: bold;
-}
-
-
-.sidebar a::before {
-  content: '•';
-  color: #6c757d;
-  margin-right: 10px;
-  font-size: 20px;
-  vertical-align: middle;
-  display: inline-block;
-}
-
-.sidebar a:hover::before {
-  color: #f8f9fa;
-}
-
-section {
-  margin-left: 230px;
-  padding: 20px;
-  padding-top: 80px;
-}
-
-
-@media screen and (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    top: 0;
-  }
-  .sidebar a {
-    text-align: center;
-    padding: 10px;
-  }
-  section {
-    margin-left: 0;
-    padding-top: 120px;
-  }
-}
-
-  </style>
 </head>
 <body>
   <header class="p-3 text-bg-brown header">
@@ -146,7 +49,17 @@ include '../assets/php/dbconnection.php';
     <div class="row mt-4">
         <?php
         // Fetch vehicles from the database, including price_perday
-        $sql = "SELECT id, vehicle_name, model, seats, fuel_type, transmission, license_plate, image_path, price_perday FROM vehicles";
+        $sql = "
+    SELECT v.id, v.vehicle_name, v.model, v.seats, v.fuel_type, v.transmission, 
+           v.license_plate, v.image_path, v.price_perday,
+           EXISTS (
+               SELECT 1 FROM rental 
+               WHERE rental.vehicle_id = v.id 
+               AND rental.rental_status IN ('requested', 'approved', 'active')
+           ) AS is_rented
+    FROM vehicles v
+";
+
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -168,12 +81,21 @@ include '../assets/php/dbconnection.php';
                             </ul>
                             <form action="../assets/php/AdminFunctions/DeleteVehicle.php" method="POST" class="d-inline">
                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                
+                              <button type="submit" class="btn btn-danger" <?php echo $row['is_rented'] ? 'disabled title="Vehicle is rented or has a pending request"' : ''; ?>>Delete</button>
+
                             </form>
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateVehicleModal" 
-                                    onclick="populateUpdateModal(<?php echo htmlspecialchars(json_encode($row)); ?>)">
-                                Update
-                            </button>
+                          <button type="button" class="btn btn-warning"
+        data-bs-toggle="modal"
+        data-bs-target="#updateVehicleModal"
+        onclick="populateUpdateModal(<?php echo htmlspecialchars(json_encode($row)); ?>)"
+        <?php echo ($row['is_rented'] ? 'disabled title="This vehicle is currently rented or requested."' : ''); ?>>
+    Update
+</button>
+<?php if ($row['is_rented']): ?>
+    <span class="badge bg-secondary mt-2">Rented / Requested</span>
+<?php endif; ?>
+
                         </div>
                     </div>
                 </div>
@@ -314,6 +236,6 @@ include '../assets/php/dbconnection.php';
     <p>&copy; 2024 Prime Ride. All Rights Reserved.</p>
 </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

@@ -129,4 +129,3 @@ $conn->close();
 header("Location:../../../admin/bookingmanagement.php ");
 exit;
 ?>
-

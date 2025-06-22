@@ -8,11 +8,11 @@ include '../dbconnection.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $rental_id = $_POST['rental_id'];
+    $rental_id = $_POST['id'];
     $customer_email = $_POST['customer_email'];
     $rental_status = $_POST['rental_status'];
 
-    $stmt = $conn->prepare("UPDATE rental SET rental_status = ? WHERE rental_id = ?");
+    $stmt = $conn->prepare("UPDATE rental SET rental_status = ? WHERE id = ?");
     $stmt->bind_param("si", $rental_status, $rental_id);
 
     if ($stmt->execute()) {

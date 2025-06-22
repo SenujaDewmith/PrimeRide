@@ -6,7 +6,6 @@ use PHPMailer\PHPMailer\Exception;
 require '../../vendor/autoload.php';
 include '../dbconnection.php';
 
-$username = $_POST['username'];
 $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -21,13 +20,13 @@ if ($password !== $confirm_password) {
 
 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-$checkUser = $conn->prepare("SELECT * FROM clients WHERE username = ? OR email = ?");
-$checkUser->bind_param("ss", $username, $email);
+$checkUser = $conn->prepare("SELECT * FROM clients WHERE email = ?");
+$checkUser->bind_param("s", $email);
 $checkUser->execute();
 $result = $checkUser->get_result();
 
 if ($result->num_rows > 0) {
-    $_SESSION['error'] = 'Username or email already exists.';
+    $_SESSION['error'] = ' email already exists.';
     header('Location: ../../../authentication.php');
 } else {
     // Handle profile picture upload
@@ -40,8 +39,8 @@ if ($result->num_rows > 0) {
     }
 
     // Insert user data into the database
-    $stmt = $conn->prepare("INSERT INTO clients (username, name, email, password, profile_picture) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $username, $name, $email, $hashed_password, $profile_picture_name);
+    $stmt = $conn->prepare("INSERT INTO clients ( name, email, password, profile_picture) VALUES ( ?, ?, ?, ?)");
+    $stmt->bind_param("ssss",  $name, $email, $hashed_password, $profile_picture_name);
     if ($stmt->execute()) {
         
         $mail = new PHPMailer(true);

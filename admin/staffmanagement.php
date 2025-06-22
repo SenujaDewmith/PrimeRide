@@ -145,7 +145,7 @@ section {
     
     <?php
 include '../assets/php/dbconnection.php'; 
-$sql = "SELECT id, staffusername FROM staff";
+$sql = "SELECT id, username FROM staff";
 $result = $conn->query($sql);
 
 ?>

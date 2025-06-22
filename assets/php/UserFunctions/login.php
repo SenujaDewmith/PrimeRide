@@ -6,21 +6,21 @@ use PHPMailer\PHPMailer\Exception;
 require '../../vendor/autoload.php';
 include '../dbconnection.php';
 
-$username = $_POST['username'];
+$email = $_POST['email'];
 $password = $_POST['password'];
 
-$stmt = $conn->prepare("SELECT * FROM clients WHERE username = ?");
-$stmt->bind_param("s", $username);
+$stmt = $conn->prepare("SELECT * FROM clients WHERE email = ?");
+$stmt->bind_param("s", $email);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
     if (password_verify($password, $user['password'])) {
-        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $user['email'];
         $_SESSION['name'] = $user['name'];
-        setcookie('username', $user['username'], time() + (86400 * 30), "/");
-
+        setcookie('username', $user['email'], time() + (86400 * 30), "/");
+        
         
         $mail = new PHPMailer(true);
         try {

@@ -161,8 +161,23 @@ include '../assets/php/dbconnection.php';
       <tbody>
         <?php
         // Fetch rental data
-        $sql = "SELECT rental_id, customer_username, customer_email, vehicle_name, plate_number, model, rental_duration, 
-                pickup_date, dropoff_date, rental_status, receipt_url FROM rental"; 
+        $sql = "
+        SELECT
+          r.id,
+          c.name AS customer_name,
+          c.email AS customer_email,
+          v.vehicle_name,
+          v.license_plate AS plate_number,
+          v.model,
+          r.rental_duration,
+          r.pickup_date,
+          r.dropoff_date,
+          r.rental_status,
+          r.receipt_url
+        FROM rental r
+        JOIN clients c ON r.client_id = c.id
+        JOIN vehicles v ON r.vehicle_id = v.id
+      ";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -172,8 +187,8 @@ include '../assets/php/dbconnection.php';
                 $receiptUrl = "../assets/Photo/paymentreciepts/{$row['receipt_url']}";
 
                 echo "<tr>
-                        <td>{$row['rental_id']}</td>
-                        <td>{$row['customer_username']}</td>
+                        <td>{$row['id']}</td>
+                        <td>{$row['customer_email']}</td>
                         <td>{$row['customer_email']}</td>
                         <td>{$row['vehicle_name']}</td>
                         <td>{$row['plate_number']}</td>
@@ -183,7 +198,7 @@ include '../assets/php/dbconnection.php';
                         <td>{$row['dropoff_date']}</td>
                         <td>
                             <form method='post' action='../assets/php/AdminFunctions/ViewRentals.php'>
-                                <input type='hidden' name='rental_id' value='{$row['rental_id']}'>
+                                <input type='hidden' name='rental_id' value='{$row['id']}'>
                                 <input type='hidden' name='customer_email' value='{$row['customer_email']}'>
                                 <select class='form-select' name='rental_status'>
                                     <option value='Available' " . ($row['rental_status'] == 'Available' ? 'selected' : '') . ">Available</option>
@@ -201,7 +216,7 @@ include '../assets/php/dbconnection.php';
                         <td>
                             <button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#receiptModal' onclick='showReceipt(\"$receiptUrl\")'>View Receipt</button>
                             <form method='post' action='../assets/php/AdminFunctions/DeleteRental.php' style='display:inline;'>
-                                <input type='hidden' name='rental_id' value='{$row['rental_id']}'>
+                                <input type='hidden' name='rental_id' value='{$row['id']}'>
                                 <button class='btn btn-danger' type='submit' onclick='return confirm(\"Are you sure you want to delete this booking?\");'>Delete</button>
                             </form>
                         </td>

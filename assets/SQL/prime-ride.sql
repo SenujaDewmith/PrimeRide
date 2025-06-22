@@ -1,272 +1,108 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Oct 08, 2024 at 09:03 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Create the database
+CREATE DATABASE IF NOT EXISTS `prime-ride` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `prime-ride`;
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- Drop tables if they exist to avoid conflicts
+DROP TABLE IF EXISTS rental, offer_orders, offers, messages, gallery, staff, vehicles, clients;
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `prime-ride`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `clients`
---
-
+-- Clients
 CREATE TABLE `clients` (
-  `client_id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `registration_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_login` timestamp NULL DEFAULT NULL,
-  `profile_picture` varchar(255) DEFAULT 'default.jpg'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(150) NOT NULL UNIQUE,
+  `password` VARCHAR(255) NOT NULL,
+  `registration_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_login` TIMESTAMP NULL DEFAULT NULL,
+  `profile_picture` VARCHAR(255) DEFAULT 'default.jpg',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `gallery`
---
-
-CREATE TABLE `gallery` (
-  `id` int(11) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `image_path` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `messages`
---
-
-CREATE TABLE `messages` (
-  `id` int(11) NOT NULL,
-  `subject` varchar(255) NOT NULL,
-  `rental_type` varchar(255) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `mobile_number` varchar(15) NOT NULL,
-  `email_address` varchar(100) NOT NULL,
-  `date_range` varchar(255) NOT NULL,
-  `message` text NOT NULL,
-  `privacy_policy` tinyint(1) NOT NULL,
-  `customer_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `offers`
---
-
-CREATE TABLE `offers` (
-  `id` int(11) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `description` text NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  `original_price` decimal(10,2) NOT NULL,
-  `image_path` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `offer_orders`
---
-
-CREATE TABLE `offer_orders` (
-  `id` int(11) NOT NULL,
-  `offer_title` varchar(255) NOT NULL,
-  `offer_price` decimal(10,2) NOT NULL,
-  `offer_description` text NOT NULL,
-  `customer_username` varchar(255) NOT NULL,
-  `customer_email` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `rental`
---
-
-CREATE TABLE `rental` (
-  `id` int(11) NOT NULL,
-  `rental_id` int(11) NOT NULL,
-  `vehicle_name` varchar(255) NOT NULL,
-  `plate_number` varchar(50) NOT NULL,
-  `model` varchar(255) NOT NULL,
-  `total_price` decimal(10,2) NOT NULL,
-  `customer_username` varchar(255) NOT NULL,
-  `customer_name` varchar(255) NOT NULL,
-  `customer_email` varchar(255) NOT NULL,
-  `rental_duration` int(11) NOT NULL,
-  `pickup_date` date NOT NULL,
-  `dropoff_date` date NOT NULL,
-  `rental_status` varchar(50) NOT NULL,
-  `receipt_url` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `staff`
---
-
-CREATE TABLE `staff` (
-  `id` int(11) NOT NULL,
-  `staff_id` varchar(20) NOT NULL,
-  `staffusername` varchar(100) NOT NULL,
-  `staffpassword` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vehicles`
---
-
+-- Vehicles
 CREATE TABLE `vehicles` (
-  `id` int(11) NOT NULL,
-  `vehicle_name` varchar(100) NOT NULL,
-  `model` varchar(50) NOT NULL,
-  `seats` int(11) NOT NULL,
-  `fuel_type` varchar(50) NOT NULL,
-  `transmission` varchar(50) NOT NULL,
-  `license_plate` varchar(20) NOT NULL,
-  `price_perday` decimal(10,2) NOT NULL,
-  `image_path` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `vehicle_name` VARCHAR(100) NOT NULL,
+  `model` VARCHAR(50) NOT NULL,
+  `seats` INT(11) NOT NULL,
+  `fuel_type` VARCHAR(50) NOT NULL,
+  `transmission` VARCHAR(50) NOT NULL,
+  `license_plate` VARCHAR(20) NOT NULL UNIQUE,
+  `price_perday` DECIMAL(10,2) NOT NULL,
+  `image_path` VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for dumped tables
---
+-- Gallery
+CREATE TABLE `gallery` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NOT NULL,
+  `image_path` VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for table `clients`
---
-ALTER TABLE `clients`
-  ADD PRIMARY KEY (`client_id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
+-- Messages
+CREATE TABLE `messages` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `subject` VARCHAR(255) NOT NULL,
+  `rental_type` VARCHAR(255) NOT NULL,
+  `first_name` VARCHAR(100) NOT NULL,
+  `last_name` VARCHAR(100) NOT NULL,
+  `mobile_number` VARCHAR(15) NOT NULL,
+  `email_address` VARCHAR(100) NOT NULL,
+  `date_range` VARCHAR(255) NOT NULL,
+  `message` TEXT NOT NULL,
+  `privacy_policy` TINYINT(1) NOT NULL,
+  `customer_id` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for table `gallery`
---
-ALTER TABLE `gallery`
-  ADD PRIMARY KEY (`id`);
+-- Offers
+CREATE TABLE `offers` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NOT NULL,
+  `description` TEXT NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL,
+  `original_price` DECIMAL(10,2) NOT NULL,
+  `image_path` VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for table `messages`
---
-ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`);
+-- Offer Orders
+CREATE TABLE `offer_orders` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `offer_title` VARCHAR(255) NOT NULL,
+  `offer_price` DECIMAL(10,2) NOT NULL,
+  `offer_description` TEXT NOT NULL,
+  `customer_username` VARCHAR(255) NOT NULL,
+  `customer_email` VARCHAR(255) NOT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for table `offers`
---
-ALTER TABLE `offers`
-  ADD PRIMARY KEY (`id`);
+-- Staff
+CREATE TABLE `staff` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for table `offer_orders`
---
-ALTER TABLE `offer_orders`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `rental`
---
-ALTER TABLE `rental`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `staff`
---
-ALTER TABLE `staff`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `vehicles`
---
-ALTER TABLE `vehicles`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `license_plate` (`license_plate`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `clients`
---
-ALTER TABLE `clients`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `gallery`
---
-ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `messages`
---
-ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `offers`
---
-ALTER TABLE `offers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `offer_orders`
---
-ALTER TABLE `offer_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `rental`
---
-ALTER TABLE `rental`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `staff`
---
-ALTER TABLE `staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `vehicles`
---
-ALTER TABLE `vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+-- Rental (after vehicles and clients)
+CREATE TABLE `rental` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `rental_id` INT(11) NOT NULL,
+  `vehicle_id` INT(11) NOT NULL,
+  `client_id` INT(11) NOT NULL,
+  `total_price` DECIMAL(10,2) NOT NULL,
+  `rental_duration` INT(11) NOT NULL,
+  `pickup_date` DATE NOT NULL,
+  `dropoff_date` DATE NOT NULL,
+  `rental_status` VARCHAR(50) NOT NULL,
+  `receipt_url` VARCHAR(255) DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`vehicle_id`) REFERENCES `vehicles`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`client_id`) REFERENCES `clients`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

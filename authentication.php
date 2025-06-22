@@ -110,8 +110,8 @@ input:valid {
       <h4>Login</h4>
       <form method="POST" action="assets/php/UserFunctions/login.php">
         <div class="mb-3">
-          <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-          <input type="text" name="username" class="form-control" id="username" required>
+          <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+          <input type="text" name="email" class="form-control" id="email" required>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
@@ -124,10 +124,7 @@ input:valid {
     <div id="signup-form" class="auth-form d-none">
       <h4>Signup</h4>
       <form id="signupForm" method="POST" action="assets/php/UserFunctions/register.php" enctype="multipart/form-data">
-        <div class="mb-3">
-          <label for="signup-username" class="form-label">Username <span class="text-danger">*</span></label>
-          <input type="text" name="username" class="form-control" id="signup-username" required>
-        </div>
+       
         <div class="mb-3">
           <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
           <input type="text" name="name" class="form-control" id="name" required>
