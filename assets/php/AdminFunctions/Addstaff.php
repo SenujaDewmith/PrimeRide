@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashed_password = password_hash($staffpassword, PASSWORD_DEFAULT);
 
 
-    $sql = "INSERT INTO staff (staff_id, staffusername, staffpassword)
+    $sql = "INSERT INTO staff (id, username, password)
             VALUES ('$staff_id', '$staffusername', '$hashed_password')";
 
    

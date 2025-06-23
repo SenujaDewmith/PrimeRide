@@ -47,7 +47,9 @@ if ($hour < 12) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Profile</title>
     <link href="assets/css/style.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script defer src="assets/js/bootstrap.bundle.min.js"></script>
     <style>
         body { margin-top: 80px; }
         .profile-picture {
@@ -193,8 +195,7 @@ if ($hour < 12) {
 </div>
 <?php include 'footer.php'; ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
 document.querySelectorAll('.update-btn').forEach(button => {
     button.addEventListener('click', function() {

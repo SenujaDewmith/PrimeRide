@@ -1,0 +1,59 @@
+/* Sidebar Styles */
+.sidebar {
+    height: 100vh;
+    width: 220px;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    background-color: #495057;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 9;
+    transition: 0.3s ease;
+}
+
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #f8f9fa;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.sidebar a.active {
+    background-color: #17a2b8;
+    color: white;
+    font-weight: bold;
+}
+
+.sidebar a::before {
+    content: '•';
+    color: #6c757d;
+    margin-right: 10px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.sidebar a:hover::before {
+    color: #f8f9fa;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+    }
+
+    .sidebar a {
+        text-align: center;
+        padding: 12px;
+    }
+}

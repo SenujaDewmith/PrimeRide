@@ -1,0 +1,14 @@
+/* css/footer.css */
+footer {
+    background-color: #d4002a;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}

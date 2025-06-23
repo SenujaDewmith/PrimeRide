@@ -4,46 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Car Rental Admin Dashboard</title>
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <link rel="stylesheet" href="css/management.css"/>
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <script defer src="../assets/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="vehiclemanagement.css"/>
+  <script defer src="../assets/js/bootstrap.bundle.min.js"></script>
+  
 
 </head>
 <body>
-  <header class="p-3 text-bg-brown header">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-between">
-            <div class="d-flex align-items-center">
-                <a href="" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <img src="../assets/Photo/logo.png" class="navlogo" alt="">
-                </a>
-                <h1>Prime Ride Admin Dashboard</h1>
-            </div>
-            <div class="d-flex align-items-center ms-auto">                           
-            </div>
-        </div>
-    </div>
-</header>
+    <!-- header -->
+<?php include 'components/admin_header.php'; ?>
 
   
- <!-- Sidebar -->
- <div class="sidebar">
-    <a href="vehiclemanagement.php">Vehicle Management</a>
-    <a href="bookingmanagement.php">Booking Management</a>
-    <a href="staffmanagement.php">Staff Management</a>
-    <a href="gallerymanagement.php">Gallery Management</a>
-    <a href="Promotions.php">Promotions</a>
-  </div>
+<!-- Sidebar -->
+<?php include 'components/admin_sidebar.php';?>
+    
 
-  <?php
-// Include database connection
-include '../assets/php/dbconnection.php';
-?>
+    <!-- // Include database connection -->
+    <?php
+        include '../assets/php/dbconnection.php';
+    ?>
 
-<div class="content">
+<div class="content min-vh-100">
     <h2>Vehicle Management</h2>
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVehicleModal">Add New Vehicle</button>
     <div class="row mt-4">
@@ -131,15 +115,27 @@ include '../assets/php/dbconnection.php';
                     </div>
                     <div class="mb-3">
                         <label for="seats" class="form-label">Seats</label>
-                        <input type="number" class="form-control" id="seats" name="seats" required>
+                        <input type="number" class="form-control" id="seats" name="seats" min="1" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="fuelType" class="form-label">Fuel Type</label>
-                        <input type="text" class="form-control" id="fuelType" name="fuel_type" required>
+
+                   <div class="mb-3">
+                    <label for="fuelType" class="form-label">Fuel Type</label>
+                    <select class="form-select" id="fuelType" name="fuel_type" required>
+                        <option value="">-- Select Fuel Type --</option>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Electric">Electric</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="transmission" class="form-label">Transmission</label>
-                        <input type="text" class="form-control" id="transmission" name="transmission" required>
+                        <select class="form-select" id="transmission" name ="transmission" required>
+                            <option value="">--Select Transmission Type--</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Manual">Manual</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="licensePlate" class="form-label">License Plate</label>
@@ -229,13 +225,16 @@ include '../assets/php/dbconnection.php';
         document.getElementById('update_license_plate').value = vehicle.license_plate;
         document.getElementById('update_price_perday').value = vehicle.price_perday; // Add this line
     }
+
+    document.getElementById('seats').addEventListener('input', function () {
+    if (this.value < 1) {
+      this.value = '';
+    }
+  });
+
 </script>
 
+<?php include 'components/admin_footer.php'; ?>
  
-<footer>
-    <p>&copy; 2024 Prime Ride. All Rights Reserved.</p>
-</footer>
-
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
 </body>
 </html>

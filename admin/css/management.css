@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ca2525;
+    min-height: 100vh;
+}
+
+.navlogo {
+    width: 40px;
+    height: auto;
+    margin-left: 1rem;
+}
+
+
+section {
+    margin-left: 230px;
+    padding: 90px 20px 20px;
+    transition: margin-left 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    
+
+    section {
+        margin-left: 0;
+        padding-top: 120px;
+    }
+}

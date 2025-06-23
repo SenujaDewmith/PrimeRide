@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     
   
-    $stmt->bind_param("ssiisssd", $vehicle_name, $model, $seats, $fuel_type, $transmission, $license_plate, $image_path, $price_perday);
+    $stmt->bind_param("ssissssd", $vehicle_name, $model, $seats, $fuel_type, $transmission, $license_plate, $image_path, $price_perday);
 
 
     if ($stmt->execute()) {
