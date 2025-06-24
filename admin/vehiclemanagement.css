@@ -1,0 +1,116 @@
+/* Reset & Base */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Header */
+.header {
+  background-color: #343a40;
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.header h1 {
+  font-size: 1.6rem;
+  margin: 0 0 0 1rem;
+}
+.navlogo {
+  width: 45px;
+  margin-right: 10px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  left: 0;
+  background-color: #495057;
+  padding-top: 1rem;
+  overflow-y: auto;
+  z-index: 10;
+}
+.sidebar a {
+  display: block;
+  padding: 14px 20px;
+  color: #f8f9fa;
+  text-decoration: none;
+  font-size: 16px;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+}
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #343a40;
+  color: #ffffff;
+  border-left: 4px solid #17a2b8;
+  font-weight: 500;
+}
+
+/* Main Content */
+.content {
+  margin-left: 240px;
+  padding: 2rem;
+}
+.content h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+/* Cards */
+.car-card {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+.car-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+.card-body h5 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.card-body ul li {
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+}
+
+/* Modal form spacing */
+.modal-body .form-label {
+  font-weight: 500;
+}
+.modal-body input {
+  font-size: 0.95rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+/* Responsive */
+@media screen and (max-width: 992px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+  .content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  .car-card .card-img-top {
+    height: 180px;
+  }
+}

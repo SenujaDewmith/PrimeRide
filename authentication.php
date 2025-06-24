@@ -8,10 +8,9 @@ session_start();
 <head>
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <script defer src="assets/js/bootstrap.bundle.min.js"></script>
-  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  
-  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- <link rel="stylesheet" href="assets/css/style.css" /> -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PrimeRide | Authentication</title>
@@ -44,7 +43,7 @@ session_start();
     margin-bottom: 20px;
 }
 
-.btn {
+.btnl {
     width: 120px;
 }
 
@@ -81,7 +80,7 @@ input:valid {
     }
 }
 
-  </style>
+</style>
 </head>
 
 <body>
@@ -90,11 +89,11 @@ input:valid {
 <?php include 'navigation.php'; ?>
 
 <hr class="featurette-divider">
-<section class="auth-section container mt-5">
-  <div class="card p-4">
+<section class="auth-section container ">
+  <div class="card p-4  mt-md-1">
     <div class="text-center mb-3">
-      <button id="login-tab" class="btn btn-primary" onclick="switchForm('login')">Login</button>
-      <button id="signup-tab" class="btn btn-outline-primary" onclick="switchForm('signup')">Signup</button>
+      <button id="login-tab" class="btn btnl btn-primary" onclick="switchForm('login')">Login</button>
+      <button id="signup-tab" class="btn btnl btn-outline-primary" onclick="switchForm('signup')">Signup</button>
     </div>
 
     
@@ -158,7 +157,7 @@ input:valid {
 <?php include 'footer.php' ?>
 
 
-<script src="assets/js/blockinspect.js"></script>
+
 <script src="assets/js/authentication.js"></script>
 </body>
 

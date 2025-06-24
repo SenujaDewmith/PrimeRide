@@ -1,0 +1,95 @@
+/* General */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.header {
+  background-color: #d4002a;
+  padding: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header a,
+.header button {
+  transition: all 0.3s ease;
+}
+
+.header a:hover {
+  transform: scale(1.1);
+}
+
+.header .navlogo {
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.header .btn-outline-light {
+  border-radius: 20px;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.header .btn-warning {
+  border-radius: 20px;
+  color: #d4002a;
+  border: none;
+}
+
+/* Submenu Styles */
+.submenudirect-wrapper {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  position: fixed;
+  top: 90px;
+  width: 100%;
+  z-index: 999;
+}
+
+.submenudirect {
+  display: flex;
+  justify-content: center;
+}
+
+.submenudirect .nav-pills {
+  display: flex;
+  justify-content: center;
+}
+
+.submenudirect .nav-pills .nav-item {
+  margin: 0 10px;
+}
+
+.submenudirect .nav-pills .nav-link {
+  color: #555;
+  margin: 0 10px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.submenudirect .nav-pills .nav-link:hover,
+.submenudirect .nav-pills .nav-link.active {
+  background-color: #d4002a;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submenudirect .nav-pills .nav-link.active {
+  font-weight: bold;
+}

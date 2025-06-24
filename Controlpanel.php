@@ -80,8 +80,8 @@
 <?php endif; ?>
 
 
-  <!-- Footer -->
   
+  <footer>
     <div class="container text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">Prime Ride</strong> <span>All Rights Reserved</span></p>
     </div>

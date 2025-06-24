@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     } else {
        
-        $sql = "SELECT * FROM staff WHERE staffusername = ?";
+        $sql = "SELECT * FROM staff WHERE username = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result->num_rows === 1) {
             $row = $result->fetch_assoc();
             
-            if (password_verify($password, $row['staffpassword'])) {
+            if (password_verify($password, $row['password'])) {
          
                 $_SESSION['user_role'] = 'staff';
                 $_SESSION['username'] = $username;

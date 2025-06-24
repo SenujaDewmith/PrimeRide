@@ -18,7 +18,7 @@
       font-family: Arial, sans-serif;
       background-color: #f7f7f7;
       margin-top: 200px;
-      margin-bottom: 200px;
+      /* margin-bottom: 200px; */
     }
 
     .form-section {
@@ -46,8 +46,12 @@
 <body>
   <!-- Navigation Bar -->
   <?php include 'navigation.php'; ?>
+  <div class="content mt-5"> <h1> 
 
-  <div class="container mt-5" >
+
+  </h1> <br><br><br>
+  </div>
+  <div class="container mt-5 " >
     <div class="row">
       <!-- Left Side: Contact Form -->
       <div class="col-lg-7">
@@ -146,7 +150,11 @@
       </div>
     </div>
   </div>
+  
+  <div class="content mt-5"> <h1> 
 
+
+  </h1> <br><br><br>
   <!-- Footer -->
   <?php include 'footer.php'; ?>
 

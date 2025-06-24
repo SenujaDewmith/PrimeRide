@@ -1,8 +1,8 @@
 <?php
-session_start();
 
 $is_logged_in = isset($_SESSION['username']) || isset($_COOKIE['username']);
 ?>
+<link rel="stylesheet" href="assets/css/main_header.css">
 
 <!-- Header -->
 <header class="p-3 text-bg-brown header">
@@ -15,9 +15,6 @@ $is_logged_in = isset($_SESSION['username']) || isset($_COOKIE['username']);
                 <h1>Prime Ride Car Rental</h1>
             </div>
             <div class="d-flex align-items-center ms-auto">
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="search" role="search">
-                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-                </form>
                 <div class="text-end">
                     <?php if ($is_logged_in): ?>
                         
@@ -25,7 +22,7 @@ $is_logged_in = isset($_SESSION['username']) || isset($_COOKIE['username']);
                     <?php else: ?>
                         
                         <a href="authentication.php"><button type="button" class="btn btn-warning">Login / Sign-up</button></a>
-                         <a href="Controlpanel.php"><button type="button" class="btn btn-warning">Admin Login</button></a>
+                        <a href="Controlpanel.php"><button type="button" class="btn btn-warning">Admin Login</button></a>
                     <?php endif; ?>
                 </div>
             </div>

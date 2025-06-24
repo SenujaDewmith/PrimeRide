@@ -27,7 +27,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-$client_id = $user['client_id'];
+$client_id = $user['id'];
 $name = $user['name'];
 $profile_picture = !empty($user['profile_picture']) ? $user['profile_picture'] : 'default.jpg';
 
@@ -50,6 +50,9 @@ if ($hour < 12) {
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <script defer src="assets/js/bootstrap.bundle.min.js"></script>
+
+    
+
     <style>
         body { margin-top: 80px; }
         .profile-picture {
@@ -193,7 +196,10 @@ if ($hour < 12) {
         </div>
     </div>
 </div>
+
 <?php include 'footer.php'; ?>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>

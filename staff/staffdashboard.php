@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="staff.css">
   
   <meta charset="UTF-8">
@@ -35,16 +33,14 @@
 include '../assets/php/dbconnection.php'; 
 ?>
 <div class="content">
-    <h2>Booking Management</h2>
+    <h2>- Booking Management -</h2>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>Rental ID</th>
-          <th>Customer</th>
-          <th>Email Address</th>
-          <th>Vehicle</th>
-          <th>Plate Number</th>
-          <th>Model</th>
+          <th>vehicle_id</th>
+          <th>client_id</th>
+          <th>total_price</th>
           <th>Duration (days)</th>
           <th>Pickup Date</th>
           <th>Dropoff Date</th>
@@ -55,7 +51,7 @@ include '../assets/php/dbconnection.php';
       <tbody>
         <?php
         // Fetch rental data
-        $sql = "SELECT rental_id, customer_username, customer_email, vehicle_name, plate_number, model, rental_duration, 
+        $sql = "SELECT id, vehicle_id, client_id, total_price, rental_duration, 
                 pickup_date, dropoff_date, rental_status, receipt_url FROM rental"; 
         $result = $conn->query($sql);
 
@@ -66,19 +62,17 @@ include '../assets/php/dbconnection.php';
                 $receiptUrl = "../assets/Photo/paymentreciepts/{$row['receipt_url']}";
 
                 echo "<tr>
-                        <td>{$row['rental_id']}</td>
-                        <td>{$row['customer_username']}</td>
-                        <td>{$row['customer_email']}</td>
-                        <td>{$row['vehicle_name']}</td>
-                        <td>{$row['plate_number']}</td>
-                        <td>{$row['model']}</td>
+                        <td>{$row['id']}</td>
+                        <td>{$row['vehicle_id']}</td>
+                        <td>{$row['client_id']}</td>
+                        <td>{$row['total_price']}</td>
                         <td>{$row['rental_duration']}</td>
                         <td>{$row['pickup_date']}</td>
                         <td>{$row['dropoff_date']}</td>
                         <td>
                             <form method='post' action='../assets/php/StaffFunctions/ViewRentals.php'>
-                                <input type='hidden' name='rental_id' value='{$row['rental_id']}'>
-                                <input type='hidden' name='customer_email' value='{$row['customer_email']}'>
+                                <input type='hidden' name='id' value='{$row['id']}'>
+                                <input type='hidden' name='client_id' value='{$row['client_id']}'>
                                 <select class='form-select' name='rental_status'>
                                     <option value='Available' " . ($row['rental_status'] == 'Available' ? 'selected' : '') . ">Available</option>
                                     <option value='Out' " . ($row['rental_status'] == 'Out' ? 'selected' : '') . ">Out</option>
@@ -95,7 +89,7 @@ include '../assets/php/dbconnection.php';
                         <td>
                             <button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#receiptModal' onclick='showReceipt(\"$receiptUrl\")'>View Receipt</button>
                             <form method='post' action='../assets/php/StaffFunctions/Delete_Rental.php' style='display:inline;'>
-                                <input type='hidden' name='rental_id' value='{$row['rental_id']}'>
+                                <input type='hidden' name='id' value='{$row['id']}'>
                                 <button class='btn btn-danger' type='submit' onclick='return confirm(\"Are you sure you want to delete this booking?\");'>Delete</button>
                             </form>
                         </td>
@@ -210,9 +204,7 @@ include '../assets/php/dbconnection.php';
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+  <script defer src="../assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

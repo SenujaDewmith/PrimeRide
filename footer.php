@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="assets/css/main_footer.css">
+
+
 <footer id="footer" class="footer dark-background">
   <div class="container">
     <div class="row gy-3">
