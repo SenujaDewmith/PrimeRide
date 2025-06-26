@@ -49,8 +49,6 @@ if ($hour < 12) {
     <link href="assets/css/style.css" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <script defer src="assets/js/bootstrap.bundle.min.js"></script>
-
     
 
     <style>
@@ -78,7 +76,11 @@ if ($hour < 12) {
                 <h3 class="text-white"><?php echo $greeting . ', ' . htmlspecialchars($name); ?>!</h3>
             </div>
             <div>
-                <a href="assets/php/UserFunctions/logout.php" class="btn btn-danger">Logout</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                Logout
+                </button>
+
+                <!-- <a href="assets/php/UserFunctions/logout.php" class="btn btn-danger">Logout</a> -->
             </div>
         </div>
     </div>
@@ -165,6 +167,26 @@ if ($hour < 12) {
                     </div>
                 </div>
 
+                <!-- Delete Confirmation Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this rental?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <a id="confirmDeleteBtn" href="#" class="btn btn-danger">Delete</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+
                 <!-- Payment Modal -->
                 <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -192,6 +214,26 @@ if ($hour < 12) {
                         </div>
                     </div>
                 </div>
+
+                <!-- Logout Confirmation Modal -->
+                <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                    <div class="modal-header bg-warning text-dark">
+                        <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to logout?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <a href="assets/php/UserFunctions/logout.php" class="btn btn-danger">Yes, Logout</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -200,7 +242,7 @@ if ($hour < 12) {
 <?php include 'footer.php'; ?>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 <script>
 document.querySelectorAll('.update-btn').forEach(button => {
@@ -210,13 +252,18 @@ document.querySelectorAll('.update-btn').forEach(button => {
     });
 });
 document.querySelectorAll('.delete-btn').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
         const rentalId = this.getAttribute('data-rentalid');
-        if (confirm('Are you sure you want to delete this rental?')) {
-            window.location.href = `assets/php/UserFunctions/Delete_rental.php?rental_id=${rentalId}`;
-        }
+        const confirmBtn = document.getElementById('confirmDeleteBtn');
+        confirmBtn.href = `assets/php/UserFunctions/Delete_rental.php?rental_id=${rentalId}`;
+        
+        const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+        modal.show();
     });
 });
 </script>
+
+        <script defer src="assets/js/bootstrap.bundle.min.js"></script>
+        
 </body>
 </html>

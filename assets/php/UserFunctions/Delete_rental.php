@@ -7,7 +7,7 @@ if (isset($_GET['rental_id'])) {
     $rental_id = $_GET['rental_id'];
 
     
-    $sql = "DELETE FROM rental WHERE rental_id = ?";
+    $sql = "DELETE FROM rental WHERE id = ?";
     $stmt = $conn->prepare($sql);
     
     if ($stmt) {

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
 
     
-    $stmt = $conn->prepare("UPDATE clients SET password = ? WHERE username = ?");
+    $stmt = $conn->prepare("UPDATE clients SET password = ? WHERE name = ?");
     if (!$stmt) {
         echo "<script>alert('Database Error.'); window.location.href = '../../../profile.php';</script>";
         die("Prepare failed: " . $conn->error);

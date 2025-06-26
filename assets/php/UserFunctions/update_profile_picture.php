@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profilePicUpload']))
 
     if (move_uploaded_file($file["tmp_name"], $target_file)) {
         
-        $stmt = $conn->prepare("UPDATE clients SET profile_picture = ? WHERE username = ?");
+        $stmt = $conn->prepare("UPDATE clients SET profile_picture = ? WHERE name = ?");
         if (!$stmt) {
             die("Prepare failed: " . $conn->error);
         }

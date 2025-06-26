@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
     $stmt->bind_param("ssissssd", $vehicle_name, $model, $seats, $fuel_type, $transmission, $license_plate, $image_path, $price_perday);
 
-
+    
     if ($stmt->execute()) {
       
         header("Location:../../../admin/vehiclemanagement.php");
