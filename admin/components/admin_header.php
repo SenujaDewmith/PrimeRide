@@ -12,8 +12,31 @@
         <h1>Prime Ride Admin Dashboard</h1>
       </div>
       <div class="d-flex align-items-center ms-auto">
-        <!-- Optional: User profile, logout, etc. -->
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">
+          Logout
+        </button>
       </div>
     </div>
   </div>
 </header>
+
+<!-- Logout Confirmation Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-danger">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="logoutModalLabel">Confirm Logout</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to logout?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <a href="../../assets/php/AdminFunctions/AdminLogout.php" class="btn btn-danger">Yes, Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+

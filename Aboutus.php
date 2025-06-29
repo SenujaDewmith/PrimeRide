@@ -1,4 +1,6 @@
-<?php include 'assets/php/dbconnection.php'; ?>
+<?php include 'assets/php/dbconnection.php'; session_start();?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

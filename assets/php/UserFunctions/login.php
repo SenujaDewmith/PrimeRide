@@ -17,9 +17,15 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
     if (password_verify($password, $user['password'])) {
+        
+        session_regenerate_id(true); // prevent session fixation
+
         $_SESSION['email'] = $user['email'];
         $_SESSION['name'] = $user['name'];
-        setcookie('username', $user['email'], time() + (86400 * 30), "/");
+
+     
+       
+        
         
         
         $mail = new PHPMailer(true);

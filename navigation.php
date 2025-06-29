@@ -1,6 +1,6 @@
 <?php
 
-$is_logged_in = isset($_SESSION['username']) || isset($_COOKIE['username']);
+$is_logged_in = isset($_SESSION['email']) ;
 ?>
 <link rel="stylesheet" href="assets/css/main_header.css">
 

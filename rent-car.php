@@ -67,7 +67,7 @@ if (isset($_SESSION['email'])) {
 <body>
 
   <!-- Navigation Bar -->
-  <?php include 'navigation.php'; ?>
+<?php  include 'navigation.php';?>
   
   <hr>
   <!-- Available cars -->

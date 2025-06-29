@@ -153,7 +153,7 @@ if ($hour < 12) {
                                                 <p class="card-text"><strong>Rental Duration (days):</strong> ' . $rental['rental_duration'] . '</p>
                                                 <p class="card-text"><strong>Rental Price (LKR):</strong> ' . $rental['total_price'] . '</p>
                                                 <button class="btn btn-danger delete-btn" data-rentalid="' . $rental['id'] . '">Delete Rental</button>
-                                                <button class="btn btn-info mt-2 update-btn" data-rentalid="' . $rental['id'] . '" data-toggle="modal" data-target="#paymentModal">Update Payment</button>
+                                                <button class="btn btn-info mt-2 update-btn" data-rentalid="' . $rental['id'] . '" data-toggle="modal" data-target="paymentModal">Update Payment</button>
                                             </div>
                                         </div>
                                     </div>';
@@ -249,8 +249,13 @@ document.querySelectorAll('.update-btn').forEach(button => {
     button.addEventListener('click', function() {
         const rentalId = this.getAttribute('data-rentalid');
         document.getElementById('rental_id').value = rentalId;
+
+        const modalEl = document.getElementById('paymentModal');
+        const modal = new bootstrap.Modal(modalEl);
+        modal.show();
     });
 });
+
 document.querySelectorAll('.delete-btn').forEach(button => {
     button.addEventListener('click', function () {
         const rentalId = this.getAttribute('data-rentalid');
