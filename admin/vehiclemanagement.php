@@ -1,3 +1,5 @@
+<?php include '../assets/php/dbconnection.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,46 +11,48 @@
   <link rel="stylesheet" href="css/management.css"/>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   
-  <script defer src="../assets/js/bootstrap.bundle.min.js"></script>
   
-
+  
 </head>
 <body>
-    <!-- header -->
+
+<!-- header -->
 <?php include 'components/admin_header.php'; ?>
 
-  
 <!-- Sidebar -->
 <?php include 'components/admin_sidebar.php';?>
     
 
-    <!-- // Include database connection -->
-    <?php
-        include '../assets/php/dbconnection.php';
-    ?>
-
 <div class="content min-vh-100">
     <h2>Vehicle Management</h2>
     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addVehicleModal">Add New Vehicle</button>
-    <div class="row mt-4">
+    
+    <a href="../assets/php/AdminFunctions/GenerateAvailableVehiclesReport.php" 
+    class="btn btn-success ms-2" 
+    target="_blank">
+    Available Vehicles Report
+    </a>
+
+    <button class="btn btn-warning ms-2" data-bs-toggle="modal" data-bs-target="#dateRangeModal">
+    Rented / Booked Vehicles Report
+    </button>
+
+
+<div class="row mt-4">
         <?php
-        // Fetch vehicles from the database, including price_perday
-        $sql = "
-    SELECT v.id, v.vehicle_name, v.model, v.seats, v.fuel_type, v.transmission, 
-           v.license_plate, v.image_path, v.price_perday,
-           EXISTS (
-               SELECT 1 FROM rental 
-               WHERE rental.vehicle_id = v.id 
-               AND rental.rental_status IN ('requested', 'approved', 'active')
-           ) AS is_rented
-    FROM vehicles v
-";
+            // Fetch vehicles from the database, including price_perday
+            $sql = " SELECT v.id, v.vehicle_name, v.model, v.seats, v.fuel_type, v.transmission, 
+                    v.license_plate, v.image_path, v.price_perday, v.vehicle_make, v.vehicle_type,
+                    EXISTS (SELECT 1 FROM rental 
+                    WHERE rental.vehicle_id = v.id 
+                    AND rental.rental_status IN ('requested', 'approved', 'active')) 
+                    AS is_rented FROM vehicles v";
 
-        $result = $conn->query($sql);
+                    $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                ?>
+                    if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+        ?>
                 <div class="col-md-4 mb-4">
                     <div class="card car-card">
                         <img src="../assets/Photo/Vehicleimg/<?php echo $row['image_path']; ?>" class="card-img-top"
@@ -57,6 +61,8 @@
                             <h5 class="card-title"><?php echo $row['vehicle_name']; ?></h5>
                             <p class="card-text"><?php echo $row['model']; ?> - Spacious and comfortable. Perfect for family trips.</p>
                             <ul class="list-unstyled">
+                                <li><strong>Make</strong><?php echo $row['vehicle_make'];?></li>
+                                <li><strong>Type:</strong> <?php echo $row['vehicle_type']; ?></li>
                                 <li><strong>Seats:</strong> <?php echo $row['seats']; ?></li>
                                 <li><strong>Fuel Type:</strong> <?php echo $row['fuel_type']; ?></li>
                                 <li><strong>Transmission:</strong> <?php echo $row['transmission']; ?></li>
@@ -65,25 +71,21 @@
                             </ul>
                             <form action="../assets/php/AdminFunctions/DeleteVehicle.php" method="POST" class="d-inline">
                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                
-                              <button type="submit" class="btn btn-danger" <?php echo $row['is_rented'] ? 'disabled title="Vehicle is rented or has a pending request"' : ''; ?>>Delete</button>
-
+                                <button type="submit" class="btn btn-danger" <?php echo $row['is_rented'] ? 'disabled title="Vehicle is rented or has a pending request"' : ''; ?>>Delete</button>
                             </form>
-                          <button type="button" class="btn btn-warning"
-        data-bs-toggle="modal"
-        data-bs-target="#updateVehicleModal"
-        onclick="populateUpdateModal(<?php echo htmlspecialchars(json_encode($row)); ?>)"
-        <?php echo ($row['is_rented'] ? 'disabled title="This vehicle is currently rented or requested."' : ''); ?>>
-    Update
-</button>
-<?php if ($row['is_rented']): ?>
-    <span class="badge bg-secondary mt-2">Rented / Requested</span>
-<?php endif; ?>
 
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateVehicleModal"
+                                onclick="populateUpdateModal(<?php echo htmlspecialchars(json_encode($row)); ?>)"
+                                <?php echo ($row['is_rented'] ? 'disabled title="This vehicle is currently rented or requested."' : ''); ?>>
+                                Update
+                            </button>
+                            <?php if ($row['is_rented']): ?>
+                                <span class="badge bg-secondary mt-2">Rented / Requested</span>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-                <?php
+        <?php
             }
         } else {
             echo "<p>No vehicles available.</p>";
@@ -102,6 +104,8 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="addVehicleModalLabel">Add New Vehicle</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                
+
             </div>
             <form action="../assets/php/AdminFunctions/AddVehicle.php" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
@@ -109,6 +113,36 @@
                         <label for="vehicleName" class="form-label">Vehicle Name</label>
                         <input type="text" class="form-control" id="vehicleName" name="vehicle_name" required>
                     </div>
+
+                    <!-- changes -->
+                    <div class="mb-3">
+                        <label for="vehiclMake" class="form-label">Vehicle Make</label>
+                        <select class="form-select" id="vehicleMake" name="vehicle_make" required>
+                            <option value="">--Select Vehicle Make</option>
+                            <option value="BMW">BMW</option>
+                            <option value="BENZ">BENZ</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Nissan">Nissan</option>
+                            <option value="Mazda">Mazda</option>
+                            <option value="Suzuki">Suzuki</option>
+                            <option value="Peradua">Peradua</option>
+                            <option value="Hyundai">Hyundai</option>
+                            <option value="KIA">KIA</option>
+                            <option value="Bajaj">Bajaj</option>
+                        </select>
+                    </div>
+
+                    <!-- changes -->
+                    <div class="mb-3">
+                        <label for="vehicleType" class="form-label">Vehicle Type</label>
+                        <select class="form-select" id="vehicleType" name="vehicle_type" required>
+                            <option value="">--Select Vehicle Type--</option>
+                            <option value="Car">Car</option>
+                            <option value="Van">Van</option>
+                            <option value="Mini-Van">Mini Van</option>
+                        </select>
+                    </div>
+
                     <div class="mb-3">
                         <label for="model" class="form-label">Model</label>
                         <input type="text" class="form-control" id="model" name="model" required>
@@ -213,6 +247,32 @@
     </div>
 </div>
 
+
+<!-- Date Range Modal -->
+<div class="modal fade" id="dateRangeModal" tabindex="-1" aria-labelledby="dateRangeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="GET" action="../assets/php/AdminFunctions/GenerateRentedVehiclesReport.php" target="_blank" class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dateRangeModalLabel">Select Date Range</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="from_date" class="form-label">From Date</label>
+          <input type="date" id="from_date" name="from_date" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="to_date" class="form-label">To Date</label>
+          <input type="date" id="to_date" name="to_date" class="form-control" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Generate Report</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <!-- JavaScript to Populate Update Modal -->
 <script>
     function populateUpdateModal(vehicle) {
@@ -233,6 +293,8 @@
   });
 
 </script>
+
+<script defer src="../assets/js/bootstrap.bundle.min.js"></script>
 
 <?php include 'components/admin_footer.php'; ?>
  

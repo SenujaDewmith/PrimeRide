@@ -1,8 +1,5 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-require '../../vendor/autoload.php';
 include '../dbconnection.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,9 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dropoff_date = $_POST['dropoff_date'];
     $total_price = $_POST['total_price'];
 
+
     $rental_status = "Pending Payment";
     $created_at = date('Y-m-d H:i:s');
-    $rental_id = rand(100000, 999999);
+    $rental_id = rand(100000, 999999);//unused
 
     // Fetch vehicle_id
     $stmt_vehicle = $conn->prepare("SELECT id, vehicle_name, model FROM vehicles WHERE license_plate = ?");
@@ -79,58 +77,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("iiissdss", $vehicle_id, $client_id, $rental_duration, $pickup_date, $dropoff_date, $total_price, $rental_status, $created_at);
 
         if ($stmt->execute()) {
-            $mail = new PHPMailer(true);
-            try {
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'abhistreamsyt01@gmail.com';
-                $mail->Password = 'qoeq udkn ldzm ehdm';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
-
-                $mail->setFrom('support@primeride.com', 'Prime Ride');
-                $mail->addAddress($customer_email, $customer_name);
-
-                $mail->isHTML(true);
-                $mail->Subject = 'Rental Request Confirmation';
-                $mail->Body = "
-                <html>
-                <body>
-                    <div style='font-family:Arial,sans-serif; max-width:600px; margin:auto; background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1);'>
-                        <h2 style='background:#4CAF50; color:#fff; padding:10px; text-align:center;'>Rental Request Confirmation</h2>
-                        <p>Dear $customer_name,</p>
-                        <p>Thank you for your rental request with us. Here are the details:</p>
-                        <ul>
-                            <li><strong>Vehicle Name:</strong> $vehicle_name</li>
-                            <li><strong>Plate Number:</strong> $plate_number</li>
-                            <li><strong>Model:</strong> $model</li>
-                            <li><strong>Rental Duration:</strong> $rental_duration days</li>
-                            <li><strong>Pickup Date:</strong> $pickup_date</li>
-                            <li><strong>Dropoff Date:</strong> $dropoff_date</li>
-                            <li><strong>Total Price:</strong> Rs.$total_price</li>
-                        </ul>
-                        <p>Your rental request is currently <strong>Pending Payment</strong>. Please complete the payment to confirm your booking.</p>
-                        <p><a href='http://localhost/primeride/profile.php' style='background:#4CAF50; color:white; padding:10px 20px; text-decoration:none; border-radius:4px;'>Complete Payment</a></p>
-                        <p style='color:#777; font-size:12px;'>If you have questions, contact us at support@primeride.com</p>
-                        <p style='text-align:center; font-size:12px;'>&copy; 2024 Prime Ride</p>
-                    </div>
-                </body>
-                </html>
-                ";
-
-                $mail->send();
-                echo "<script>
-                        alert('Rental request submitted successfully! A confirmation email has been sent.');
-                        window.location.href = '../../../profile.php';
-                      </script>";
-            } catch (Exception $e) {
-                echo "<script>
-                        alert('Error: Could not send confirmation email.');
-                        window.location.href = '../../../profile.php';
-                      </script>";
-            }
-        } else {
+          include 'success_modal.php';          
+        } 
+        else {
             echo "<script>
                     alert('Error: Could not submit the rental request.');
                     window.location.href = '../../../rent-car.php';

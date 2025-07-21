@@ -1,5 +1,6 @@
 
-// Counter Up Animation
+// --- Counter Up Animation script ----
+
 document.addEventListener('DOMContentLoaded', () => {
     const counters = document.querySelectorAll('[data-toggle="counter-up"]');
     const speed = 2000;
@@ -21,6 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateCount();
     });
+
+    
 });
+
+var test = document.getElementById('test');
+   console.log(test.textContent);
 
 

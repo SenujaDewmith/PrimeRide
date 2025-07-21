@@ -1,19 +1,12 @@
-<?php
-
-session_start();
-
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">  -->
-  
+
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <script defer src="assets/js/bootstrap.bundle.min.js"></script>
-
   <link rel="stylesheet" href="assets/css/style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,25 +23,25 @@ session_start();
   <hr class="featurette-divider">
 
   <div class="drawer container drawersize"></div>
-  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="assets/Photo/Drawer/homedrawer3.png" class="d-block w-100" alt="">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/Photo/Drawer/homedrawer2.png" class="d-block w-100" alt="">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/Photo/Drawer/homedrawer1.png" class="d-block w-100" alt="">
-      </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="assets/Photo/Drawer/homedrawer3.png" class="d-block w-100" alt="">
+        </div>
+          <div class="carousel-item">
+            <img src="assets/Photo/Drawer/homedrawer2.png" class="d-block w-100" alt="">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/Photo/Drawer/homedrawer1.png" class="d-block w-100" alt="">
+          </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
-    </button>
+      </button>
   </div>
 
   <!-- Introduction -->
@@ -109,65 +102,66 @@ session_start();
     </div>
   </div>
 
+  
+
   <!-- Reviews Section -->
   <section class="reviews py-5" id="reviews">
     <div class="container">
       <h1 class="text-center mb-5"><span>Client's Reviews</span></h1>
       <div class="row">
-        <!-- Review Cards -->
-       
-<div class="col-lg-4 col-md-6 mb-4">
-  <div class="card h-100 text-center">
-    <img src="assets/Photo/Drawer/profile.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="John Doe" style="width: 150px; height: 150px;">
-    <div class="card-body">
-      <h3 class="card-title">John Doe</h3>
-      <p class="card-text">"The service was amazing! The team was professional, and the process was seamless. I couldn't have asked for more."</p>
-      <div class="stars text-warning">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i> <!-- 4.5 stars -->
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="col-lg-4 col-md-6 mb-4">
-  <div class="card h-100 text-center">
-    <img src="assets/Photo/Drawer/profile.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Jane Smith" style="width: 150px; height: 150px;">
-    <div class="card-body">
-      <h3 class="card-title">Jane Smith</h3>
-      <p class="card-text">"I was thoroughly impressed with the attention to detail. The staff went above and beyond to meet my needs!"</p>
-      <div class="stars text-warning">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i> <!-- 5 stars -->
-      </div>
-    </div>
-  </div>
-</div>
+      <!-- Review Cards -->     
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 text-center">
+            <img src="assets/Photo/Drawer/profile.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="John Doe" style="width: 150px; height: 150px;">
+            <div class="card-body">
+              <h3 class="card-title">John Doe</h3>
+              <p class="card-text">"The service was amazing! The team was professional, and the process was seamless. I couldn't have asked for more."</p>
+              <div class="stars text-warning">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i> <!-- 4.5 stars -->
+              </div>
+            </div>
+          </div>
+        </div>
 
-<div class="col-lg-4 col-md-6 mb-4">
-  <div class="card h-100 text-center">
-    <img src="assets/Photo/Drawer/profile.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Emily Johnson" style="width: 150px; height: 150px;">
-    <div class="card-body">
-      <h3 class="card-title">Emily Johnson</h3>
-      <p class="card-text">"Fantastic experience! Everything was handled professionally, and I felt supported throughout the entire process."</p>
-      <div class="stars text-warning">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-        <i class="fas fa-star-half-alt"></i> <!-- 4 stars -->
-      </div>
-    </div>
-  </div>
-</div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 text-center">
+            <img src="assets/Photo/Drawer/profile.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Jane Smith" style="width: 150px; height: 150px;">
+            <div class="card-body">
+              <h3 class="card-title">Jane Smith</h3>
+              <p class="card-text">"I was thoroughly impressed with the attention to detail. The staff went above and beyond to meet my needs!"</p>
+              <div class="stars text-warning">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i> <!-- 5 stars -->
+              </div>
+            </div>
+          </div>
+        </div>
 
-      
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 text-center">
+            <img src="assets/Photo/Drawer/profile.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Emily Johnson" style="width: 150px; height: 150px;">
+            <div class="card-body">
+              <h3 class="card-title">Emily Johnson</h3>
+              <p class="card-text">"Fantastic experience! Everything was handled professionally, and I felt supported throughout the entire process."</p>
+              <div class="stars text-warning">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <i class="fas fa-star-half-alt"></i> <!-- 4 stars -->
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -175,10 +169,46 @@ session_start();
   <!-- Footer -->
   <?php include 'footer.php'; ?>
 
+
+
+  <!-- <script>
+    // --- Counter Up Animation script ----
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const counters = document.querySelectorAll('[data-toggle="counter-up"]');
+      const speed = 2000;
+
+      counters.forEach(counter => {
+          const updateCount = () => {
+              const target = +counter.getAttribute('data-target');
+              const count = +counter.innerText;
+
+              const increment = target / speed * 10; 
+
+              if (count < target) {
+                  counter.innerText = Math.ceil(count + increment);
+                  setTimeout(updateCount, 100);
+              } else {
+                  counter.innerText = target;
+              }
+          };
+
+          updateCount();
+      });
+
+      
+    });
+    
+    // var test = document.getElementById('test');
+    // console.log(test.textContent);
+
+  </script> -->
+
   <script src="assets/js/script.js"></script>
 
-  <!-- <script src="assets/js/blockinspect.js"></script>  -->
+  <script src="assets/js/blockinspect.js"></script> 
+
+  
 
 </body>
-
 </html>
