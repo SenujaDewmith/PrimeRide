@@ -39,26 +39,28 @@
 
 
 <div class="row mt-4">
-        <?php
-            // Fetch vehicles from the database, including price_perday
-            $sql = " SELECT v.id, v.vehicle_name, v.model, v.seats, v.fuel_type, v.transmission, 
-                    v.license_plate, v.image_path, v.price_perday, v.vehicle_make, v.vehicle_type,
-                    EXISTS (SELECT 1 FROM rental 
-                    WHERE rental.vehicle_id = v.id 
-                    AND rental.rental_status IN ('requested', 'approved', 'active')) 
-                    AS is_rented FROM vehicles v";
+    <?php
+        // SQL query that fetch vehicles from the db, including price_perday
+        $sql = " SELECT v.id, v.vehicle_name, v.model, v.seats, v.fuel_type, v.transmission, 
+                v.license_plate, v.image_path, v.price_perday, v.vehicle_make, v.vehicle_type,
+                EXISTS (SELECT 1 FROM rental 
+                WHERE rental.vehicle_id = v.id 
+                AND rental.rental_status IN ('requested', 'approved', 'active')) 
+                AS is_rented FROM vehicles v";
+        $result = $conn->query($sql);
 
-                    $result = $conn->query($sql);
-
-                    if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-        ?>
-                <div class="col-md-4 mb-4">
+        
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $vehicleName = $row['vehicle_make']." ". $row['model'];
+    ?>
+            <div class="col-md-4 mb-4">
                     <div class="card car-card">
                         <img src="../assets/Photo/Vehicleimg/<?php echo $row['image_path']; ?>" class="card-img-top"
                              alt="<?php echo $row['vehicle_name']; ?>">
+                             
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $row['vehicle_name']; ?></h5>
+                            <h5 class="card-title"><?php echo $vehicleName; ?></h5>
                             <p class="card-text"><?php echo $row['model']; ?> - Spacious and comfortable. Perfect for family trips.</p>
                             <ul class="list-unstyled">
                                 <li><strong>Make</strong><?php echo $row['vehicle_make'];?></li>
@@ -86,7 +88,7 @@
                     </div>
                 </div>
         <?php
-            }
+                }
         } else {
             echo "<p>No vehicles available.</p>";
         }
@@ -104,9 +106,8 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="addVehicleModalLabel">Add New Vehicle</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                
-
             </div>
+
             <form action="../assets/php/AdminFunctions/AddVehicle.php" method="POST" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="mb-3">
@@ -152,15 +153,15 @@
                         <input type="number" class="form-control" id="seats" name="seats" min="1" required>
                     </div>
 
-                   <div class="mb-3">
-                    <label for="fuelType" class="form-label">Fuel Type</label>
-                    <select class="form-select" id="fuelType" name="fuel_type" required>
-                        <option value="">-- Select Fuel Type --</option>
-                        <option value="Petrol">Petrol</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Electric">Electric</option>
-                        <option value="Hybrid">Hybrid</option>
-                    </select>
+                    <div class="mb-3">
+                        <label for="fuelType" class="form-label">Fuel Type</label>
+                        <select class="form-select" id="fuelType" name="fuel_type" required>
+                            <option value="">-- Select Fuel Type --</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
@@ -171,6 +172,7 @@
                             <option value="Manual">Manual</option>
                         </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="licensePlate" class="form-label">License Plate</label>
                         <input type="text" class="form-control" id="licensePlate" name="license_plate" required>
@@ -205,26 +207,70 @@
             <form id="updateVehicleForm" method="POST" action="../assets/php/AdminFunctions/UpdateVehicle.php" enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" name="id" id="update_vehicle_id" value="">
+
                     <div class="mb-3">
                         <label for="update_vehicle_name" class="form-label">Vehicle Name</label>
                         <input type="text" class="form-control" id="update_vehicle_name" name="vehicle_name" required>
                     </div>
+
+                    <!-- changes -->
+                    <div class="mb-3">
+                        <label for="update_vehicle_make" class="form-label">Vehicle Make</label>
+                        <select class="form-select" id="update_vehicle_make" name="vehicle_make" required>
+                            <option value="">--Select Vehicle Make</option>
+                            <option value="BMW">BMW</option>
+                            <option value="BENZ">BENZ</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Nissan">Nissan</option>
+                            <option value="Mazda">Mazda</option>
+                            <option value="Suzuki">Suzuki</option>
+                            <option value="Peradua">Peradua</option>
+                            <option value="Hyundai">Hyundai</option>
+                            <option value="KIA">KIA</option>
+                            <option value="Bajaj">Bajaj</option>
+                        </select>
+                    </div>
+
+                    <!-- changes -->
+                    <div class="mb-3">
+                        <label for="update_vehicle_type" class="form-label">Vehicle Type</label>
+                        <select class="form-select" id="update_vehicle_type" name="vehicle_type" required>
+                            <option value="">--Select Vehicle Type--</option>
+                            <option value="Car">Car</option>
+                            <option value="Van">Van</option>
+                            <option value="Mini-Van">Mini Van</option>
+                        </select>
+                    </div>
+
                     <div class="mb-3">
                         <label for="update_model" class="form-label">Model</label>
                         <input type="text" class="form-control" id="update_model" name="model" required>
                     </div>
                     <div class="mb-3">
                         <label for="update_seats" class="form-label">Seats</label>
-                        <input type="number" class="form-control" id="update_seats" name="seats" required>
+                        <input type="number" class="form-control" id="update_seats" name="seats" min="1" required>
                     </div>
+
                     <div class="mb-3">
                         <label for="update_fuel_type" class="form-label">Fuel Type</label>
-                        <input type="text" class="form-control" id="update_fuel_type" name="fuel_type" required>
+                        <select class="form-select" id="update_fuel_type" name="fuel_type" required>
+                            <option value="">-- Select Fuel Type --</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="update_transmission" class="form-label">Transmission</label>
-                        <input type="text" class="form-control" id="update_transmission" name="transmission" required>
+                        <select class="form-select" id="update_transmission" name ="transmission" required>
+                            <option value="">--Select Transmission Type--</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Manual">Manual</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="update_license_plate" class="form-label">License Plate</label>
                         <input type="text" class="form-control" id="update_license_plate" name="license_plate" required>
@@ -278,6 +324,8 @@
     function populateUpdateModal(vehicle) {
         document.getElementById('update_vehicle_id').value = vehicle.id;
         document.getElementById('update_vehicle_name').value = vehicle.vehicle_name;
+        document.getElementById('update_vehicle_make').value = vehicle.vehicle_make;
+        document.getElementById('update_vehicle_type').value = vehicle.vehicle_type;
         document.getElementById('update_model').value = vehicle.model;
         document.getElementById('update_seats').value = vehicle.seats;
         document.getElementById('update_fuel_type').value = vehicle.fuel_type;

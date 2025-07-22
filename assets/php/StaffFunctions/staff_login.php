@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_role'] = 'admin';
         $_SESSION['username'] = $username;
 
-       //change the index.html to vehiclemgmt/php
         header('Location: ../../../admin/vehiclemanagement.php');
         exit();
     } else {

@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <!-- header -->
+<!-- header -->
 <?php include 'components/admin_header.php'; ?>
 
   
