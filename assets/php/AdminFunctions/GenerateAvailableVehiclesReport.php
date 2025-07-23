@@ -9,11 +9,19 @@ $pdf->SetFont('helvetica', '', 12);
 $pdf->Cell(0, 10, 'Available Vehicles Report', 0, 1, 'C');
 $pdf->Ln(5);
 
+$from = $_GET['from_date']?? null;
+$to = $_GET['to_date']?? null;
+
+if(!$from || !$to){
+    die('Invalid date range');
+}
+
 // Query only vehicles NOT rented/requested
 $sql = "
 SELECT * FROM vehicles 
-WHERE id NOT IN (
-    SELECT vehicle_id FROM rental WHERE rental_status IN ('requested', 'approved', 'active','Pending Payment')
+WHERE id NOT IN (SELECT vehicle_id FROM rental 
+WHERE rental_status IN ('requested', 'approved', 'active','Pending Payment')
+AND pickup_date BETWEEN '$from' AND '$to'
 )";
 $result = $conn->query($sql);
 

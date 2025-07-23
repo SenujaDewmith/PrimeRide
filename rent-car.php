@@ -4,34 +4,6 @@ session_start();
 
 $user_data = null;
 
-// if (isset($_SESSION['email'])) {
-//     $email = $_SESSION['email'];
-
-//     $sql = "SELECT name, email FROM clients WHERE email = ?";
-
-//     $stmt = $conn->prepare($sql);
-    
-//     if ($stmt) {
-//         $stmt->bind_param("s", $email);
-
-//         $stmt->execute();
-
-//         $result = $stmt->get_result();
-
-//         if ($result->num_rows == 1) {
-//             $user_data = $result->fetch_assoc();
-//         } 
-//         else {
-//             echo "<script>console.log('No Userdata');</script>";
-//         }
-
-//         $stmt->close();
-//     } 
-//     else {
-//         echo "<script>console.log('SQL statement error');</script>";
-//     }
-// }
-
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 
@@ -114,24 +86,25 @@ if (isset($_SESSION['email'])) {
 
         // Fetch all available vehicles from the database
 
-        $sql = "SELECT id, vehicle_name, model, seats, fuel_type, 
+        $sql = "SELECT id, vehicle_name, vehicle_make, model, vehicle_type, seats, fuel_type, 
         transmission, image_path, price_perday, license_plate FROM vehicles";
         
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                ?>
+              $vehicleName = $row['vehicle_make']." ". $row['model'];
+        ?>
 
                 <!-- Car Card -->
                 <div class="col-md-4">
                     <div class="card car-card mb-4">
                         <img src="assets/Photo/Vehicleimg/<?php echo $row['image_path']; ?>" class="card-img-top"
-                          alt="<?php echo $row['vehicle_name']; ?>">
+                          alt="<?php echo $vehicleName; ?>">
                           <div class="card-body">
-                            <h5 class="card-title"><?php echo $row['vehicle_name']; ?></h5>
-                            <p class="card-text"><?php echo $row['model']; ?></p>
+                            <h5 class="card-title"><?php echo $vehicleName; ?></h5>
                             <ul class="list-unstyled">
+                                <li><strong>Type:</strong> <?php echo $row['vehicle_type'];?></li>
                                 <li><strong>Seats:</strong> <?php echo $row['seats']; ?></li>
                                 <li><strong>Fuel Type:</strong> <?php echo $row['fuel_type']; ?></li>
                                 <li><strong>Transmission:</strong> <?php echo $row['transmission']; ?></li>
@@ -192,13 +165,6 @@ if (isset($_SESSION['email'])) {
                     <?php echo isset($user_data) ? 'readonly' : ''; ?>>
             </div>
 
-
-            <!-- <div class="mb-3">
-              <label for="customer_email" class="form-label">Email</label>
-              <input type="email" class="form-control" name="customer_email" id="customer_email" 
-                    value="<?php echo isset($user_data) ? htmlspecialchars($user_data['email']) : ''; ?>" 
-                    <?php echo isset($user_data) ? 'readonly' : ''; ?> required>
-            </div> -->
 
             <div class="mb-3">
               <label for="contact_number" class="form-label">Contact Number</label>
@@ -340,9 +306,9 @@ if (isset($_SESSION['email'])) {
           totalPriceInput.value = "";
       });
 
-    
+      //checks drop off date equal or greater that pickup date
       dropoffDateInput.addEventListener('change', function () {
-          const pickupDateValue = pickupDateInput.value;  //can't we use that previous variable created??
+          const pickupDateValue = pickupDateInput.value;  
           const dropoffDateValue = dropoffDateInput.value;
 
           
@@ -351,8 +317,6 @@ if (isset($_SESSION['email'])) {
               dropoffDateInput.value = "";
               return;
           }
-
-        
           const pickupDate = new Date(pickupDateValue);
           const dropoffDate = new Date(dropoffDateValue);
           const duration = Math.ceil((dropoffDate - pickupDate) / (1000 * 60 * 60 * 24));

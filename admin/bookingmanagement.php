@@ -1,3 +1,5 @@
+<?php include '../assets/php/dbconnection.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,27 +8,28 @@
   <title>Car Rental Admin Dashboard</title>
   <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="css/management.css"/>
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-  <script defer src="../assets/js/bootstrap.bundle.min.js"></script>
-
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css"> 
 </head>
 
 <body>
 <!-- header -->
 <?php include 'components/admin_header.php'; ?>
 
-  
 <!-- Sidebar -->
 <?php include 'components/admin_sidebar.php';?>
 
-
 <!-- Main Content Area -->
 <!-- Bookings -->
-<?php
-include '../assets/php/dbconnection.php'; 
-?>
+
 <div class="content min-vh-100">
     <h2>Booking Management</h2>
+
+    <div class="mb-3">
+      <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#reportModal">
+        Generate PDF Report
+      </button>
+    </div>
+
     <table class="table table-striped">
       <thead>
         <tr>
@@ -118,13 +121,6 @@ include '../assets/php/dbconnection.php';
         ?>
       </tbody>
     </table>
-
-    <!-- Generate PDF Report Button -->
-<div class="mb-3">
-  <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#reportModal">
-    Generate PDF Report
-  </button>
-</div>
 </div>
 
 <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
@@ -188,7 +184,9 @@ function showReceipt(receiptUrl) {
 }
 </script>
 
+
 <?php include 'components/admin_footer.php'; ?>
 
+<script defer src="../assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

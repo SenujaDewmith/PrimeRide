@@ -2,10 +2,10 @@
 include '../dbconnection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $vehicle_name = $_POST['vehicle_name']; 
+    // $vehicle_name = $_POST['vehicle_name']; 
     $vehicle_make = $_POST['vehicle_make'];
-    $vehicle_type = $_POST['vehicle_type'];
     $model = $_POST['model']; 
+    $vehicle_type = $_POST['vehicle_type'];
     $seats = (int)$_POST['seats']; 
     $fuel_type = $_POST['fuel_type']; 
     $transmission = $_POST['transmission']; 
@@ -41,10 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $checkStmt->close();
 
     // Insert new vehicle
-    $sql = "INSERT INTO vehicles (vehicle_name, vehicle_make, vehicle_type, model, seats, fuel_type, transmission, license_plate, image_path, price_perday) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO vehicles (vehicle_make, model, vehicle_type, seats, fuel_type, transmission, license_plate, image_path, price_perday) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssissssd", $vehicle_name, $vehicle_make, $vehicle_type, $model, $seats, $fuel_type, $transmission, $license_plate, $image_path, $price_perday);
+    $stmt->bind_param("sssissssd", $vehicle_make, $model, $vehicle_type,  $seats, $fuel_type, $transmission, $license_plate, $image_path, $price_perday);
 
     if ($stmt->execute()) {
         header("Location:../../../admin/vehiclemanagement.php");

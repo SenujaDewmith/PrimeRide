@@ -33,7 +33,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <a href="../../assets/php/AdminFunctions/AdminLogout.php" class="btn btn-danger">Yes, Logout</a>
+        <a href="../assets/php/AdminFunctions/AdminLogout.php" class="btn btn-danger">Yes, Logout</a>
       </div>
     </div>
   </div>
