@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
 });
 
-var test = document.getElementById('test');
-   console.log(test.textContent);
+;
 
 

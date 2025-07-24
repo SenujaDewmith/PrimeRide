@@ -5,21 +5,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Car Rental Admin Dashboard</title>
+  <title>Prime Ride | Admin Dashboard</title>
   <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="css/management.css"/>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css"> 
 </head>
 
 <body>
-<!-- header -->
+
 <?php include 'components/admin_header.php'; ?>
-
-<!-- Sidebar -->
 <?php include 'components/admin_sidebar.php';?>
-
-<!-- Main Content Area -->
-<!-- Bookings -->
 
 <div class="content min-vh-100">
     <h2>Booking Management</h2>
@@ -48,7 +43,7 @@
       </thead>
       <tbody>
         <?php
-        // Fetch rental data
+        // Fetching rental data
         $sql = "
         SELECT
           r.id,
@@ -69,9 +64,9 @@
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Output each row
+            
             while($row = $result->fetch_assoc()) {
-                // Construct the receipt URL
+               
                 $receiptUrl = "../assets/Photo/paymentreciepts/{$row['receipt_url']}";
 
                 echo "<tr>
@@ -89,11 +84,7 @@
                                 <input type='hidden' name='rental_id' value='{$row['id']}'>
                                 <input type='hidden' name='customer_email' value='{$row['customer_email']}'>
                                 <select class='form-select' name='rental_status'>
-                                    <option value='Available' " . ($row['rental_status'] == 'Available' ? 'selected' : '') . ">Available</option>
-                                    <option value='Out' " . ($row['rental_status'] == 'Out' ? 'selected' : '') . ">Out</option>
                                     <option value='Payment pending' " . ($row['rental_status'] == 'Payment pending' ? 'selected' : '') . ">Payment pending</option>
-                                    <option value='Processing' " . ($row['rental_status'] == 'Processing' ? 'selected' : '') . ">Processing</option>
-                                    <option value='In service' " . ($row['rental_status'] == 'In service' ? 'selected' : '') . ">In service</option>
                                     <option value='Approved' " . ($row['rental_status'] == 'Approved' ? 'selected' : '') . ">Approved</option> <!-- New option added -->
                                 </select>
                         </td>
@@ -123,6 +114,7 @@
     </table>
 </div>
 
+<!-- Receipt modal -->
 <div class="modal fade" id="receiptModal" tabindex="-1" aria-labelledby="receiptModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -136,7 +128,6 @@
         </div>
     </div>
 </div>
-
 
 
 <!-- Report Modal -->
@@ -167,21 +158,39 @@
 </div>
 
 
-
 <script>
-function showReceipt(receiptUrl) {
-    var receiptContent = document.getElementById("receiptContent");
-    var receiptMessage = document.getElementById("receiptMessage");
 
-    if (receiptUrl) {
-        // If URL exists, display it
-        receiptContent.innerHTML = "<iframe src='" + receiptUrl + "' style='width: 100%; height: 500px;' frameborder='0'></iframe>";
-    } else {
-        // If no URL, show an error message
-        receiptContent.innerHTML = "";
-        receiptMessage.innerHTML = "Error: Receipt does not exist.";
-    }
-}
+  //script for receipt
+  function showReceipt(receiptUrl) {
+      var receiptContent = document.getElementById("receiptContent");
+      var receiptMessage = document.getElementById("receiptMessage");
+
+      if (receiptUrl) {
+          // If URL exists, display it
+          receiptContent.innerHTML = "<iframe src='" + receiptUrl + "' style='width: 100%; height: 500px;' frameborder='0'></iframe>";
+      } else {
+          // If no URL, show an error message
+          receiptContent.innerHTML = "";
+          receiptMessage.innerHTML = "Error: Receipt does not exist.";
+      }
+  }
+
+  //script for date range modal
+  document.addEventListener("DOMContentLoaded", function(){
+    const startDateInput = document.querySelector('input[name="start_date"]');
+    const endDateInput = document.querySelector('input[name="end_date"]');
+
+    endDateInput.disabled = true;
+
+    startDateInput.addEventListener('change', function(){
+      const startDateValue = startDateInput.value;
+
+      endDateInput.disabled = false;
+      endDateInput.setAttribute('min', startDateValue);
+    });
+
+  });
+
 </script>
 
 

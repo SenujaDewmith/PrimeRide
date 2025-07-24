@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
+  
   document.getElementById('signup-password').addEventListener('input', function () {
     const password = this.value;
     const regex = /^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;

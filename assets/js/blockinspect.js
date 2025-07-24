@@ -1,6 +1,6 @@
-// document.addEventListener('contextmenu', function(e) {
-//     e.preventDefault();
-// }, false);
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+}, false);
 
 
 document.addEventListener('keydown', function(e) {

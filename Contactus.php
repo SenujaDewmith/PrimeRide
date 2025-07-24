@@ -122,17 +122,6 @@ session_start();
               <button type="submit" class="btn submit-btn btn-lg">Submit</button>
             </div>
           </form>
-
-          <script>
-            function validateForm() {
-              const privacyPolicy = document.getElementById('privacyPolicy');
-              if (!privacyPolicy.checked) {
-                alert('You must consent to the Privacy Policy before submitting.');
-                return false;
-              }
-              return true;
-            }
-          </script>
         </div>
       </div>
 
@@ -156,9 +145,20 @@ session_start();
   </div>
   
   <div class="content mt-5"> <h1> 
-
+  
 
   </h1> <br><br><br>
+
+  <script>
+            function validateForm() {
+              const privacyPolicy = document.getElementById('privacyPolicy');
+              if (!privacyPolicy.checked) {
+                alert('You must consent to the Privacy Policy before submitting.');
+                return false;
+              }
+              return true;
+            }
+          </script>
   <!-- Footer -->
   <?php include 'footer.php'; ?>
 

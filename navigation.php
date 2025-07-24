@@ -36,7 +36,7 @@ $is_logged_in = isset($_SESSION['email']) ;
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>        
                 <li class="nav-item"><a href="rent-car.php" class="nav-link">Select A Vehicle</a></li>
-                <li class="nav-item"><a href="Specialoffers.php" class="nav-link">Offers</a></li>              
+                <!-- <li class="nav-item"><a href="Specialoffers.php" class="nav-link">Offers</a></li>               -->
                 <li class="nav-item"><a href="Aboutus.php" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="FAQ.php" class="nav-link">FAQ</a></li>
                 <li class="nav-item"><a href="Contactus.php" class="nav-link">Contact Us</a></li>

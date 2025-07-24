@@ -9,13 +9,9 @@ if (isset($_SESSION['email'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <script defer src="assets/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- <link rel="stylesheet" href="assets/css/style.css" /> -->
-
+  <link rel="stylesheet" href="assets/css/style.css" />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PrimeRide | Authentication</title>
@@ -90,7 +86,6 @@ input:valid {
 
 <body>
 
-<!-- navigation bar -->
 <?php include 'navigation.php'; ?>
 
 <hr class="featurette-divider">
@@ -158,12 +153,10 @@ input:valid {
   </div>
 </section>
 
-<!-- Footer -->
 <?php include 'footer.php' ?>
 
-
-
 <script src="assets/js/authentication.js"></script>
-</body>
+<script defer src="assets/js/bootstrap.bundle.min.js"></script>
 
+</body>
 </html>

@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Car Rental Admin Dashboard</title>
+  <title>Prime Ride | Admin Dashboard</title>
   <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="css/management.css"/>
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
@@ -41,7 +41,7 @@
                 v.license_plate, v.image_path, v.price_perday, v.vehicle_make, v.vehicle_type,
                 EXISTS (SELECT 1 FROM rental 
                 WHERE rental.vehicle_id = v.id 
-                AND rental.rental_status IN ('requested', 'approved', 'active')) 
+                AND rental.rental_status IN ('Payment pending', 'approved')) 
                 AS is_rented FROM vehicles v";
         $result = $conn->query($sql);
 
@@ -337,8 +337,10 @@
 
 
 
-<!-- JavaScript to Populate Update Modal -->
+
 <script>
+
+    //JavaScript to Update Modal
     function populateUpdateModal(vehicle) {
         document.getElementById('update_vehicle_id').value = vehicle.id;
         document.getElementById('update_vehicle_make').value = vehicle.vehicle_make;

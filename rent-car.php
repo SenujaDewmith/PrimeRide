@@ -37,11 +37,7 @@ if (isset($_SESSION['email'])) {
 
 <head>
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-  <!-- boostrap icons link here -->
-   
   <script defer src="assets/js/bootstrap.bundle.min.js"></script>
-  
   <link rel="stylesheet" href="assets/css/style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -381,7 +377,7 @@ if (isset($_SESSION['email'])) {
     });
   </script>
 
- <!--Drawer -->
+ <!-- Drawer
   <div class="drawer container drawersize"></div>
   <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -403,7 +399,7 @@ if (isset($_SESSION['email'])) {
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
-  </div>
+  </div> -->
 
 
 

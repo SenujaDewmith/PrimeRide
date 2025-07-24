@@ -6,21 +6,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $staffusername = $_POST['staffusername']; 
     $staffpassword = $_POST['staffpassword']; 
     
-    
+
     $hashed_password = password_hash($staffpassword, PASSWORD_DEFAULT);
 
 
-    $sql = "INSERT INTO staff (id, username, password)
-            VALUES ('$staff_id', '$staffusername', '$hashed_password')";
+    $sql = "INSERT INTO staff (username, password)
+            VALUES(?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $staffusername,$hashed_password);
 
    
-    if ($conn->query($sql) === TRUE) {
+    if ($stmt->execute()) {
         $_SESSION['message'] = "Staff member added successfully";
     } else {
         $_SESSION['message'] = "Error: " . $conn->error;
     }
 
-   
+    $stmt->close();
     $conn->close();
 
     

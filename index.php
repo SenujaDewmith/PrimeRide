@@ -4,9 +4,7 @@
 <html lang="en">
 
 <head>
-
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <script defer src="assets/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="assets/css/style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,12 +12,10 @@
 </head>
 
 <body>
-
   <!-- Navigation bar -->
   <?php include 'navigation.php'; ?>
 
   <!-- Image Drawer -->
-  
   <hr class="featurette-divider">
 
   <div class="drawer container drawersize"></div>
@@ -122,7 +118,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i> <!-- 4.5 stars -->
+                <i class="fas fa-star-half-alt"></i> 
               </div>
             </div>
           </div>
@@ -139,7 +135,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i> <!-- 5 stars -->
+                <i class="fas fa-star"></i>
               </div>
             </div>
           </div>
@@ -156,7 +152,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-star-half-alt"></i>
-                <i class="fas fa-star-half-alt"></i> <!-- 4 stars -->
+                <i class="fas fa-star-half-alt"></i>
               </div>
             </div>
           </div>
@@ -169,46 +165,8 @@
   <!-- Footer -->
   <?php include 'footer.php'; ?>
 
-
-
-  <!-- <script>
-    // --- Counter Up Animation script ----
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const counters = document.querySelectorAll('[data-toggle="counter-up"]');
-      const speed = 2000;
-
-      counters.forEach(counter => {
-          const updateCount = () => {
-              const target = +counter.getAttribute('data-target');
-              const count = +counter.innerText;
-
-              const increment = target / speed * 10; 
-
-              if (count < target) {
-                  counter.innerText = Math.ceil(count + increment);
-                  setTimeout(updateCount, 100);
-              } else {
-                  counter.innerText = target;
-              }
-          };
-
-          updateCount();
-      });
-
-      
-    });
-    
-    // var test = document.getElementById('test');
-    // console.log(test.textContent);
-
-  </script> -->
-
   <script src="assets/js/script.js"></script>
-
-  <script src="assets/js/blockinspect.js"></script> 
-
+  <script defer src="assets/js/bootstrap.bundle.min.js"></script>
   
-
 </body>
 </html>
