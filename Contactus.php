@@ -61,65 +61,59 @@ session_start();
       <div class="col-lg-7">
         <div class="form-section">
           <h2>Send Us a Message</h2>
-          <p>Got questions or concerns? Don’t hesitate to contact us for reliable car rental services.</p>
+          <p>Got feedbacks or questions? Don’t hesitate to contact us for reliable car rental services.</p>
 
           <form action="assets/php/UserFunctions/submit_message.php" method="POST" onsubmit="return validateForm()">
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="subject" class="form-label">Subject <span class="text-danger">*</span></label>
-                <select id="subject" name="subject" class="form-select" required>
-                  <option value="">Please Select...</option>
-                  <option value="General Inquiry">General Inquiry</option>
-                  <option value="Booking Issue">Booking Issue</option>
-                  <option value="Feedback">Feedback</option>
+
+            <!-- Title -->
+            <div class="mb-2">
+              <label for="title" class="form-label">Title</label>
+                <select class="form-select form-select-sm" id="title" name="title" required>
+                    <option value="">-- Select --</option>
+                    <option value="Mr">Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Miss">Miss</option>
+                    <option value="Dr">Dr</option>
+                    <option value="Rev">Rev</option>
                 </select>
-              </div>
-              <div class="col-md-6">
-                <label for="rentalType" class="form-label">Rental Type <span class="text-danger">*</span></label>
-                <select id="rentalType" name="rental_type" class="form-select" required>
-                  <option value="">Please Select...</option>
-                  <option value="Short-term">Short-term</option>
-                  <option value="Long-term">Long-term</option>
-                  <option value="Luxury">Luxury</option>
+            </div>
+
+            <div class="mb-2">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control form-control-sm" id="name" name="name" required>
+            </div>
+
+            <div class="mb-2">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control form-control-sm" id="email" name="email" required>
+            </div>
+
+            <div class="mb-2">
+                <label for="phone" class="form-label">Telephone Number (optional)</label>
+                <input type="tel" class="form-control form-control-sm" id="phone" name="phone" pattern="[0-9]{10}">
+            </div>
+
+            <div class="mb-2">
+                <label for="basis" class="form-label">Basis of Hire</label>
+                <select class="form-select form-select-sm" id="basis" name="basis" required>
+                    <option value="">-- Select --</option>
+                    <option value="Short Term">Short Term</option>
+                    <option value="Long Term">Long Term</option>
                 </select>
-              </div>
             </div>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
-                <input type="text" id="firstName" name="first_name" class="form-control" required placeholder="John" />
-              </div>
-              <div class="col-md-6">
-                <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
-                <input type="text" id="lastName" name="last_name" class="form-control" required placeholder="Doe" />
-              </div>
+
+            <div class="mb-2">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control form-control-sm" id="message" name="message" rows="3" required></textarea>
             </div>
-            <div class="mb-3">
-              <label for="mobileNumber" class="form-label">Mobile Number <span class="text-danger">*</span></label>
-              <input type="tel" id="mobileNumber" name="mobile_number" class="form-control" required
-                placeholder="+94123456789" />
-            </div>
-            <div class="mb-3">
-              <label for="emailAddress" class="form-label">Email Address <span class="text-danger">*</span></label>
-              <input type="email" id="emailAddress" name="email_address" class="form-control" required
-                placeholder="john.doe@example.com" />
-            </div>
-            <div class="mb-3">
-              <label for="dateRange" class="form-label">Date Range <span class="text-danger">*</span></label>
-              <input type="text" id="dateRange" name="date_range" class="form-control" required
-                placeholder="Select date range" onfocus="(this.type='date')" onblur="(this.type='text')" />
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Your Message/Questions <span class="text-danger">*</span></label>
-              <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
-            </div>
+
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="privacyPolicy" name="privacy_policy" required />
               <label class="form-check-label" for="privacyPolicy">I consent to Privacy Policy and opt-in for marketing
                 communications.</label>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn submit-btn btn-lg">Submit</button>
+              <button type="submit" class="btn btn-sm btn-primary px-3">Submit</button>
             </div>
           </form>
         </div>
@@ -146,19 +140,19 @@ session_start();
   
   <div class="content mt-5"> <h1> 
   
-
   </h1> <br><br><br>
 
   <script>
-            function validateForm() {
-              const privacyPolicy = document.getElementById('privacyPolicy');
-              if (!privacyPolicy.checked) {
-                alert('You must consent to the Privacy Policy before submitting.');
-                return false;
-              }
-              return true;
-            }
-          </script>
+  
+  function validateForm() {
+    const privacyPolicy = document.getElementById('privacyPolicy');
+      if (!privacyPolicy.checked) {
+        alert('You must consent to the Privacy Policy before submitting.');
+        return false;
+      }
+      return true;
+  }
+  </script>
   <!-- Footer -->
   <?php include 'footer.php'; ?>
 
