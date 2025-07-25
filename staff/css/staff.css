@@ -1,0 +1,279 @@
+/* Base Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Navigation logo */
+.navlogo {
+  width: 40px;
+  height: auto;
+  margin-left: 1rem;
+}
+
+/* Main content area */
+.content {
+  margin-left: 250px;
+  padding: 30px;
+  padding-top: 110px;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 110px);
+  transition: all 0.3s ease;
+}
+
+/* Gallery and Booking Containers */
+.gallery-container, .booking {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.gallery-container {
+  padding-top: 100px;
+}
+
+.booking {
+  padding-top: 50px;
+  margin-top: 50px;
+  overflow-x: auto;
+}
+
+/* Form and Select Elements */
+select.form-select, .form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+  margin-bottom: 15px;
+}
+
+select.form-select:focus, .form-control:focus {
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Buttons */
+.btn {
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  margin: 5px 0;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #d4002a;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Gallery Grid */
+.list.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.list.row .col-md-4 {
+  width: 100%;
+  padding: 0;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
+}
+
+.card-body {
+  padding: 15px;
+  background-color: white;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.table tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Modal Styles */
+.modal-header {
+  background-color: #d4002a;
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+
+.modal-content {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .content {
+    margin-left: 220px;
+  }
+}
+
+@media (max-width: 992px) {
+  .content {
+    margin-left: 0;
+    padding: 20px;
+    padding-top: 90px;
+  }
+  
+  .gallery-container, .booking {
+    width: 95%;
+    padding: 15px;
+  }
+  
+  .list.row {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding-top: 80px;
+  }
+  
+  .gallery-container {
+    padding-top: 80px;
+  }
+  
+  .booking {
+    padding-top: 30px;
+    margin-top: 30px;
+  }
+  
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .table th, .table td {
+    min-width: 120px;
+  }
+  
+  .btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content {
+    padding: 15px;
+    padding-top: 70px;
+  }
+  
+  .gallery-container, .booking {
+    width: 100%;
+    padding: 10px;
+    border-radius: 0;
+  }
+  
+  .list.row {
+    grid-template-columns: 1fr;
+  }
+  
+  .table th, .table td {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+  
+  .modal-dialog {
+    margin: 10px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Form Responsiveness */
+form {
+  margin-bottom: 20px;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+/* Card hover effect */
+.col-md-4:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+/* Modal iframe */
+.modal-body iframe {
+  width: 100%;
+  min-height: 500px;
+  border: none;
+}
+
+/* No data message */
+.text-center p {
+  color: #6c757d;
+  font-style: italic;
+}

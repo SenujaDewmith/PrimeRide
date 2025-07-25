@@ -2,56 +2,65 @@
 session_start();
 include '../dbconnection.php';
 
-if (!isset($_SESSION['username']) && !isset($_COOKIE['username'])) {
+// Validate email session or cookie
+if (!isset($_SESSION['email']) && !isset($_COOKIE['email'])) {
     header('Location: ../../../authentication.php');
     exit();
 }
 
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : $_COOKIE['username'];
+$email = isset($_SESSION['email']) ? $_SESSION['email'] : $_COOKIE['email'];
 
+// Handle file upload
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profilePicUpload'])) {
-    
-    $target_dir = "../../database/user-profiles-pic/";
-    
-    $file = $_FILES['profilePicUpload'];
-    $fileName = basename($file['name']);
-    $target_file = $target_dir . $fileName;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
+    $target_dir = "../../database/user-profiles-pic/";
+    $file = $_FILES['profilePicUpload'];
+
+    // Validate image file
     $check = getimagesize($file["tmp_name"]);
     if ($check === false) {
-        die("File is not an image.");
-    }
-    
-    if ($file["size"] > 2000000) {
-        die("Sorry, your file is too large.");
+        die("File is not a valid image.");
     }
 
+    // Check file size (max 2MB)
+    if ($file["size"] > 2 * 1024 * 1024) {
+        die("File is too large. Maximum allowed size is 2MB.");
+    }
+
+    // Allow only JPG, JPEG, PNG
+    $imageFileType = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
     if (!in_array($imageFileType, ['jpg', 'jpeg', 'png'])) {
-        die("Sorry, only JPG, JPEG, & PNG files are allowed.");
+        die("Only JPG, JPEG, and PNG files are allowed.");
     }
 
+    // Generate unique filename
+    $uniqueName = uniqid('profile_', true) . '.' . $imageFileType;
+    $target_file = $target_dir . $uniqueName;
+
+    // Move uploaded file
     if (move_uploaded_file($file["tmp_name"], $target_file)) {
-        
-        $stmt = $conn->prepare("UPDATE clients SET profile_picture = ? WHERE name = ?");
+
+        // Update the database using email (not name!)
+        $stmt = $conn->prepare("UPDATE clients SET profile_picture = ? WHERE email = ?");
         if (!$stmt) {
-            die("Prepare failed: " . $conn->error);
+            die("Database error: " . $conn->error);
         }
-        $stmt->bind_param("ss", $fileName, $username);
+
+        $stmt->bind_param("ss", $uniqueName, $email);
+
         if ($stmt->execute()) {
-            
             header("Location: ../../../profile.php");
+            exit();
         } else {
-            echo "Error updating profile picture.";
+            die("Error updating profile picture.");
         }
 
         $stmt->close();
         $conn->close();
     } else {
-        die("Sorry, there was an error uploading your file.");
+        die("There was an error uploading your file.");
     }
 } else {
-    echo "No file uploaded.";
+    die("No file uploaded or invalid request.");
 }
-
 ?>

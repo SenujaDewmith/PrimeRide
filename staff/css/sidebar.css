@@ -1,0 +1,25 @@
+.sidebar {
+  position: fixed;
+  top: 70px; /* Adjust if your header is taller/shorter */
+  left: 0;
+  width: 220px;
+  height: calc(100vh - 70px);
+  background-color: #495057;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.sidebar a {
+  display: block;
+  padding: 15px 25px;
+  color: #f8f9fa;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #d4002a;
+  color: #fff;
+}

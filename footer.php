@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="assets/css/main_footer.css">
 
-
 <footer id="footer" class="footer dark-background">
   <div class="container">
     <div class="row gy-3">
@@ -45,6 +44,6 @@
   </div>
   <hr class="featurette-divider">
   <div class="container text-center mt-4">
-    <p>© <span>Copyright</span> <strong class="px-1 sitename">PrimeRide</strong> <span>All Rights Reserved</span></p>
+    <p> © <span>Copyright</span> <strong class="px-1 sitename">PrimeRide</strong> <span>All Rights Reserved</span></p>
   </div>
 </footer>

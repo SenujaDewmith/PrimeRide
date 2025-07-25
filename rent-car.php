@@ -164,7 +164,11 @@ if (isset($_SESSION['email'])) {
 
             <div class="mb-3">
               <label for="contact_number" class="form-label">Contact Number</label>
-              <input type="tel" class="form-control" name="contact_number" required>
+              <input type="tel" class="form-control" name="contact_number" id="contact_number" 
+                    maxlength="10" pattern="\d{10}" 
+                    oninput="this.value = this.value.replace(/\D/g, '').slice(0, 10);" 
+                    required>
+              <div class="form-text">Enter a 10-digit phone number (numbers only).</div>
             </div>
 
             <div class="mb-3">
@@ -185,6 +189,20 @@ if (isset($_SESSION['email'])) {
             <div class="mb-3">
               <label for="total_price" class="form-label">Total Price (LKR)</label>
               <input type="text" class="form-control" name="total_price" id="totalPrice" readonly>
+            </div>
+
+            <div class="mb-3 p-3 bg-light border rounded">
+              <h6 class="fw-bold">Advance Payment Instructions</h6>
+              <p class="mb-1">Please make an advance payment of <strong>50% of the total rental amount</strong> to the bank account below:</p>
+              <ul class="mb-2">
+                <li><strong>Bank Name:</strong> People's Bank</li>
+                <li><strong>Account Name:</strong> Prime Ride Rent Car</li>
+                <li><strong>Account Number:</strong> 1234567890</li>
+                <li><strong>Branch:</strong> Katugasthota Branch</li>
+              </ul>
+              <p class="mb-0">
+                After completing the transfer, please upload the payment slip under the <strong>"Upload Payment Receipt"</strong> section in <strong>My Account</strong>.
+              </p>
             </div>
 
             <div class="text-center">
@@ -377,29 +395,6 @@ if (isset($_SESSION['email'])) {
     });
   </script>
 
- <!-- Drawer
-  <div class="drawer container drawersize"></div>
-  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="assets/Photo/Drawer/rental1.jpg" class="d-block w-100" alt="">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/Photo/Drawer/rental2.jpg" class="d-block w-100" alt="">
-      </div>
-      <div class="carousel-item ">
-        <img src="assets/Photo/Drawer/rentcar3.png" class="d-block w-100" alt="">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div> -->
 
 
 
@@ -412,6 +407,56 @@ if (isset($_SESSION['email'])) {
       document.getElementById('modalModel').value = model;
     }
   </script>
+
+  <script>
+  let unavailableDates = [];
+
+  function fetchUnavailableDates(plateNumber) {
+    fetch(`assets/php/userFunctions/get_unavailable_dates.php?plate_number=${encodeURIComponent(plateNumber)}`)
+      .then(response => response.json())
+      .then(data => {
+        unavailableDates = data;
+        console.log('Unavailable Dates:', unavailableDates);
+      });
+  }
+
+  function isDateUnavailable(date) {
+    return unavailableDates.some(range => {
+      const from = new Date(range.pickup_date);
+      const to = new Date(range.dropoff_date);
+      date.setHours(0, 0, 0, 0);
+      return date >= from && date <= to;
+    });
+  }
+
+  // Disable unavailable dates
+  function disableUnavailableDates(input) {
+    input.addEventListener('input', function () {
+      const date = new Date(this.value);
+      if (isDateUnavailable(date)) {
+        alert("This date is not available for this vehicle.");
+        this.value = "";
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const pickupDateInput = document.querySelector('input[name="pickup_date"]');
+    const dropoffDateInput = document.querySelector('input[name="dropoff_date"]');
+
+    disableUnavailableDates(pickupDateInput);
+    disableUnavailableDates(dropoffDateInput);
+
+    const rentButtons = document.querySelectorAll('.rent-now-button');
+    rentButtons.forEach(button => {
+      button.addEventListener('click', function () {
+        const plateNumber = button.getAttribute('data-plate-number');
+        fetchUnavailableDates(plateNumber);
+      });
+    });
+  });
+</script>
+
 
 </body>
 

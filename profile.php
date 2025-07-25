@@ -59,7 +59,10 @@ if ($hour < 12) {
             border-radius: 50%;
             object-fit: cover;
         }
-        .cprofile { margin-top: 100px; }
+        
+        .cprofile { 
+            min-height: 500px;
+            margin-top: 100px; }
     </style>
 </head>
 <body>
@@ -116,17 +119,12 @@ if ($hour < 12) {
             </div>
             <div class="col-md-9">
                 <h3>Customer Profile</h3>
-                <form action="assets/php/UserFunctions/update-password.php" method="POST">
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Change Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password" required>
-                    </div>
-                    <button type="submit" class="btn btn-success">Save Changes</button>
-                </form>
+
+            <!-- Change Password Button -->
+            <button type="button" class="btn btn-warning mb-4" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                Change Password
+            </button>
+
                 <hr>
                 <?php
                 $sql = "SELECT id, pickup_date, rental_status, rental_duration, total_price FROM rental WHERE client_id = ?";
@@ -166,6 +164,74 @@ if ($hour < 12) {
                         ?>
                     </div>
                 </div>
+
+                <!-- Change Password Modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="changePasswordForm" action="assets/php/UserFunctions/update-password.php" method="POST">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+    <div class="mb-3">
+        <label for="oldPassword" class="form-label">Current Password</label>
+        <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Enter current password" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">New Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password" required>
+    </div>
+    <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password" required>
+        <div id="passwordMatchMessage" class="form-text text-danger mt-1"></div>
+    </div>
+    </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success" id="submitBtn" disabled>Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+// Real-time password match check
+document.addEventListener("DOMContentLoaded", function () {
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+    const message = document.getElementById("passwordMatchMessage");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function checkPasswords() {
+        if (confirmPassword.value === "") {
+            message.textContent = "";
+            submitBtn.disabled = true;
+            return;
+        }
+
+        if (password.value === confirmPassword.value) {
+            message.textContent = "Passwords match";
+            message.classList.remove("text-danger");
+            message.classList.add("text-success");
+            submitBtn.disabled = false;
+        } else {
+            message.textContent = "Passwords do not match";
+            message.classList.remove("text-success");
+            message.classList.add("text-danger");
+            submitBtn.disabled = true;
+        }
+    }
+
+    password.addEventListener("input", checkPasswords);
+    confirmPassword.addEventListener("input", checkPasswords);
+});
+</script>
+
 
                 <!-- Delete Confirmation Modal -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

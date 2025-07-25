@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['username'] = $username;
 
                 
-                header('Location:../../../staff/staffdashboard.php');
+                header('Location:../../../staff/booking_management.php');
                 exit();
             } else {
                 

@@ -28,20 +28,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bind_param("ss", $title, $newFileName);
 
                 if ($stmt->execute()) {
-                    echo "<script>alert('Image uploaded and added to gallery successfully.'); window.location.href = '../../../staff/staffdashboard.php';</script>";
+                    echo "<script>alert('Image uploaded and added to gallery successfully.'); window.location.href = '../../../staff/gallery_management.php';</script>";
                 } else {
-                    echo "<script>alert('Error uploading image: " . $stmt->error . "'); window.location.href = '../../../staff/staffdashboard.php';</script>";
+                    echo "<script>alert('Error uploading image: " . $stmt->error . "'); window.location.href = '../../../staff/gallery_management.php';</script>";
                 }
 
                 $stmt->close();
             } else {
-                echo "<script>alert('Error moving the uploaded file.'); window.location.href = '../../../staff/staffdashboard.php';</script>";
+                echo "<script>alert('Error moving the uploaded file.'); window.location.href = '../../../staff/gallery_management.php';</script>";
             }
         } else {
-            echo "<script>alert('Upload failed. Allowed file types: " . implode(", ", $allowedfileExtensions) . "'); window.location.href = '../../../admin/gallerymanagement.php';</script>";
+            echo "<script>alert('Upload failed. Allowed file types: " . implode(", ", $allowedfileExtensions) . "'); window.location.href = '../../../staff/gallery_management.php';</script>";
         }
     } else {
-        echo "<script>alert('No file uploaded or there was an upload error.'); window.location.href = '../../../staff/staffdashboard.php';</script>";
+        echo "<script>alert('No file uploaded or there was an upload error.'); window.location.href = '../../../staff/gallery_management.php';</script>";
     }
 
     $conn->close();

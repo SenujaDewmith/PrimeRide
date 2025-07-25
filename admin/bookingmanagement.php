@@ -67,7 +67,10 @@
             
             while($row = $result->fetch_assoc()) {
                
-                $receiptUrl = "../assets/Photo/paymentreciepts/{$row['receipt_url']}";
+                $receiptFile = "../assets/Photo/paymentreciepts/{$row['receipt_url']}";
+                $receiptExists = !empty($row['receipt_url']) && file_exists($receiptFile);
+                $receiptUrl = $receiptExists ? $receiptFile : '';
+
 
                 echo "<tr>
                         <td>{$row['id']}</td>
@@ -83,10 +86,10 @@
                             <form method='post' action='../assets/php/AdminFunctions/ViewRentals.php'>
                                 <input type='hidden' name='rental_id' value='{$row['id']}'>
                                 <input type='hidden' name='customer_email' value='{$row['customer_email']}'>
-                                <select class='form-select' name='rental_status'>
-                                    <option value='Payment pending' " . ($row['rental_status'] == 'Payment pending' ? 'selected' : '') . ">Payment pending</option>
+                            <select class='form-select' name='rental_status'>
+                              <option value='Payment pending' " . ($row['rental_status'] == 'Payment pending' ? 'selected' : '') . ">Payment pending</option>
                                     <option value='Approved' " . ($row['rental_status'] == 'Approved' ? 'selected' : '') . ">Approved</option> <!-- New option added -->
-                                </select>
+                            </select>
                         </td>
                         <td>
                             <button class='btn btn-success ' type='submit'>Update Status</button>
@@ -162,18 +165,14 @@
 
   //script for receipt
   function showReceipt(receiptUrl) {
-      var receiptContent = document.getElementById("receiptContent");
-      var receiptMessage = document.getElementById("receiptMessage");
+    var receiptContent = document.getElementById("receiptContent");
 
-      if (receiptUrl) {
-          // If URL exists, display it
-          receiptContent.innerHTML = "<iframe src='" + receiptUrl + "' style='width: 100%; height: 500px;' frameborder='0'></iframe>";
-      } else {
-          // If no URL, show an error message
-          receiptContent.innerHTML = "";
-          receiptMessage.innerHTML = "Error: Receipt does not exist.";
-      }
-  }
+    if (receiptUrl && receiptUrl.trim() !== "") {
+        receiptContent.innerHTML = "<iframe src='" + receiptUrl + "' style='width: 100%; height: 500px;' frameborder='0'></iframe>";
+    } else {
+        receiptContent.innerHTML = "<p class='text-danger'>Receipt has not been uploaded yet.</p>";
+    }
+}
 
   //script for date range modal
   document.addEventListener("DOMContentLoaded", function(){

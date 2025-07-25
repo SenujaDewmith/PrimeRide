@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 
    
-    header("Location: ../../../staff/staffdashboard.php"); 
+    header("Location: ../../../staff/gallery_management.php"); 
     exit();
 }
 ?>
