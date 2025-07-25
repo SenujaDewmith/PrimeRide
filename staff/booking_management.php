@@ -1,4 +1,3 @@
-<?php include '../assets/php/dbconnection.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +28,8 @@
     </style>
 </head>
 <body>
-
+<!-- DB Connection -->
+<?php include '../assets/php/dbconnection.php'; ?>
 
 <!-- Header -->
 <?php include 'components/staff_header.php'; ?>
@@ -105,6 +105,7 @@
             } else {
                 echo "<tr><td colspan='10' class='text-center'>No bookings found</td></tr>";
             }
+            $conn->close();
             ?>
         </tbody>
     </table>

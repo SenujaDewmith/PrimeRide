@@ -2,7 +2,7 @@
 session_start();
 include '../dbconnection.php';
 
-// Validate email session or cookie
+
 if (!isset($_SESSION['email']) && !isset($_COOKIE['email'])) {
     header('Location: ../../../authentication.php');
     exit();
@@ -49,8 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profilePicUpload']))
         $stmt->bind_param("ss", $uniqueName, $email);
 
         if ($stmt->execute()) {
-            header("Location: ../../../profile.php");
-            exit();
+           echo "<script>
+                        alert('Profile picture updated successfully!');
+                        window.location.href = '../../../profile.php';
+                </script>";
+            
         } else {
             die("Error updating profile picture.");
         }

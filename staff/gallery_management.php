@@ -29,6 +29,11 @@
             <label for="image" class="form-label">Choose an Image</label>
             <input type="file" class="form-control" name="image" id="image" required>
           </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Image Title</label>
+            <input type="text" class="form-control" name="title" id="title" required>
+          </div>
+
           <button type="submit" class="btn btn-success">Upload to the gallery</button>
         </form>
         

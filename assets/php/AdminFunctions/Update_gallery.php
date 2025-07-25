@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                
                 $sql = "INSERT INTO gallery (title, image_path) VALUES (?, ?)";
                 $stmt = $conn->prepare($sql);
-                $title = $newFileName; 
+
+                $title = $_POST['title']; 
                 $stmt->bind_param("ss", $title, $newFileName);
 
                 if ($stmt->execute()) {

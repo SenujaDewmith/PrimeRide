@@ -172,20 +172,20 @@ if ($hour < 12) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-    <div class="mb-3">
-        <label for="oldPassword" class="form-label">Current Password</label>
-        <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Enter current password" required>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">New Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password" required>
-    </div>
-    <div class="mb-3">
-        <label for="confirmPassword" class="form-label">Confirm Password</label>
-        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password" required>
-        <div id="passwordMatchMessage" class="form-text text-danger mt-1"></div>
-    </div>
-    </div>
+                    <div class="mb-3">
+                        <label for="oldPassword" class="form-label">Current Password</label>
+                        <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Enter current password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter new password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password" required>
+                        <div id="passwordMatchMessage" class="form-text text-danger mt-1"></div>
+                    </div>
+                </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -196,39 +196,7 @@ if ($hour < 12) {
     </div>
 </div>
 
-<script>
-// Real-time password match check
-document.addEventListener("DOMContentLoaded", function () {
-    const password = document.getElementById("password");
-    const confirmPassword = document.getElementById("confirmPassword");
-    const message = document.getElementById("passwordMatchMessage");
-    const submitBtn = document.getElementById("submitBtn");
-
-    function checkPasswords() {
-        if (confirmPassword.value === "") {
-            message.textContent = "";
-            submitBtn.disabled = true;
-            return;
-        }
-
-        if (password.value === confirmPassword.value) {
-            message.textContent = "Passwords match";
-            message.classList.remove("text-danger");
-            message.classList.add("text-success");
-            submitBtn.disabled = false;
-        } else {
-            message.textContent = "Passwords do not match";
-            message.classList.remove("text-success");
-            message.classList.add("text-danger");
-            submitBtn.disabled = true;
-        }
-    }
-
-    password.addEventListener("input", checkPasswords);
-    confirmPassword.addEventListener("input", checkPasswords);
-});
-</script>
-
+       
 
                 <!-- Delete Confirmation Modal -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -303,27 +271,60 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 
 <script>
-document.querySelectorAll('.update-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const rentalId = this.getAttribute('data-rentalid');
-        document.getElementById('rental_id').value = rentalId;
 
-        const modalEl = document.getElementById('paymentModal');
-        const modal = new bootstrap.Modal(modalEl);
-        modal.show();
-    });
-});
+// Real-time password match check
+        document.addEventListener("DOMContentLoaded", function () {
+            const password = document.getElementById("password");
+            const confirmPassword = document.getElementById("confirmPassword");
+            const message = document.getElementById("passwordMatchMessage");
+            const submitBtn = document.getElementById("submitBtn");
 
-document.querySelectorAll('.delete-btn').forEach(button => {
-    button.addEventListener('click', function () {
-        const rentalId = this.getAttribute('data-rentalid');
-        const confirmBtn = document.getElementById('confirmDeleteBtn');
-        confirmBtn.href = `assets/php/UserFunctions/Delete_rental.php?rental_id=${rentalId}`;
-        
-        const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
-        modal.show();
-    });
-});
+            function checkPasswords() {
+                if (confirmPassword.value === "") {
+                    message.textContent = "";
+                    submitBtn.disabled = true;
+                    return;
+                }
+
+                if (password.value === confirmPassword.value) {
+                    message.textContent = "Passwords match";
+                    message.classList.remove("text-danger");
+                    message.classList.add("text-success");
+                    submitBtn.disabled = false;
+                } else {
+                    message.textContent = "Passwords do not match";
+                    message.classList.remove("text-success");
+                    message.classList.add("text-danger");
+                    submitBtn.disabled = true;
+                }
+            }
+
+            password.addEventListener("input", checkPasswords);
+            confirmPassword.addEventListener("input", checkPasswords);
+        });
+            
+        document.querySelectorAll('.update-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const rentalId = this.getAttribute('data-rentalid');
+                document.getElementById('rental_id').value = rentalId;
+
+                const modalEl = document.getElementById('paymentModal');
+                const modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            });
+        });
+
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const rentalId = this.getAttribute('data-rentalid');
+                const confirmBtn = document.getElementById('confirmDeleteBtn');
+                confirmBtn.href = `assets/php/UserFunctions/Delete_rental.php?rental_id=${rentalId}`;
+                
+                const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+                modal.show();
+            });
+        });
+
 </script>
 
 <?php include 'footer.php'; ?>

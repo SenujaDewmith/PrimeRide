@@ -144,6 +144,11 @@ if (isset($_SESSION['email'])) {
             <input type="hidden" name="model" id="modalModel">
             <input type="hidden" name="plate_number" id="modalPlateNumber">
             <input type="hidden" name="id" id="id">
+           
+            <div class="mb-3">
+              <h5 class="text-primary" id="selectedVehicleTitle"></h5>
+            </div>
+
 
             <!-- Auto-fills the user's email from session data -->
             <div class="mb-3">
@@ -254,6 +259,7 @@ if (isset($_SESSION['email'])) {
               document.getElementById('modalVehicleName').value = vehicleName;
               document.getElementById('modalModel').value = model;
               document.getElementById('modalPlateNumber').value = plateNumber;
+              document.getElementById('selectedVehicleTitle').innerText = `${vehicleName} (${model})`;
           });
       });
   });

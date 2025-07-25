@@ -17,69 +17,79 @@ if (isset($_SESSION['email'])) {
   <title>PrimeRide | Authentication</title>
 
   <style>
-    body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.auth-section {
-    max-width: 500px;
-    margin: auto;
-    margin-top: 500px;
-    margin-bottom: 20px;
-    padding-top: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-.card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    border: none;
-}
-
-.card h4 {
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.btnl {
-    width: 120px;
-}
-
-.auth-form label {
-    font-weight: bold;
-}
-
-.auth-form .form-label .text-danger {
-    font-size: 0.85em;
-    font-weight: normal;
-}
-
-.btn-primary,
-.btn-outline-primary {
-    border-radius: 20px;
-}
-
-#password-help {
-    font-size: 0.9em;
-    color: #6c757d;
-}
-
-input:invalid {
-    border-color: #e3342f;
-}
-
-input:valid {
-    border-color: #38c172;
-}
-
-@media (min-width: 768px) {
-    .auth-section {
-        margin-top: 350px;
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
     }
-}
+    body {
+      /* margin: 0;
+      padding: 0;
+      box-sizing: border-box; */
+      flex: 1;
+    }
+    main{
+      flex: 1;
+    }
+
+    .auth-section {
+        max-width: 500px;
+        margin: auto;
+        
+        margin-bottom: 50px;
+        padding-top: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        border: none;
+    }
+
+    .card h4 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .btnl {
+        width: 120px;
+    }
+
+    .auth-form label {
+        font-weight: bold;
+    }
+
+    .auth-form .form-label .text-danger {
+        font-size: 0.85em;
+        font-weight: normal;
+    }
+
+    .btn-primary,
+    .btn-outline-primary {
+        border-radius: 20px;
+    }
+
+    #password-help {
+        font-size: 0.9em;
+        color: #6c757d;
+    }
+
+    input:invalid {
+        border-color: #e3342f;
+    }
+
+    input:valid {
+        border-color: #38c172;
+    }
+
+    @media (min-width: 768px) {
+        .auth-section {
+            margin-top: 350px;
+        }
+    }
 
 </style>
 </head>
@@ -89,7 +99,7 @@ input:valid {
 <?php include 'navigation.php'; ?>
 
 <hr class="featurette-divider">
-<section class="auth-section container ">
+<section class="auth-section container mt-5">
   <div class="card p-4  mt-md-1">
     <div class="text-center mb-3">
       <button id="login-tab" class="btn btnl btn-primary" onclick="switchForm('login')">Login</button>
@@ -106,6 +116,8 @@ input:valid {
         <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
       </div>
     <?php endif; ?>
+
+    
 
     <div id="login-form" class="auth-form">
       <h4>Login</h4>
@@ -153,7 +165,36 @@ input:valid {
   </div>
 </section>
 
-<?php include 'footer.php' ?>
+<!-- <script>
+  //script remove spaces
+  // document.addEventListener('DOMContentLoaded', function(){
+  //   const passwordInput = document.getElementById('email');
+
+  //     passwordInput.addEventListener('input', function () {
+        
+  //       this.value = this.value.replace(/\s/g, '');
+  //     });
+  // });
+
+  // document.addEventListener('DOMContentLoaded', function(){
+  //   const passwordInput = document.getElementById('password');
+
+  //     passwordInput.addEventListener('input', function () {
+        
+  //       this.value = this.value.replace(/\s/g, '');
+  //     });
+  // });
+  
+
+
+  
+</script> -->
+
+<footer class="mt-auto">
+  <div class="container text-center">
+    <p>© <span>Copyright</span> <strong class="px-1 sitename">Prime Ride</strong> <span>All Rights Reserved</span></p>
+  </div>
+</footer>
 
 <script src="assets/js/authentication.js"></script>
 <script defer src="assets/js/bootstrap.bundle.min.js"></script>

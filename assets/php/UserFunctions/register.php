@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require '../../vendor/autoload.php';
+
 include '../dbconnection.php';
 
 $name = $_POST['name'];

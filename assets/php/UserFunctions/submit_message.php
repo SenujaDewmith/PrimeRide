@@ -7,13 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
-    $basis = $_POST['basis'];
+    // $basis = $_POST['basis'];
     $message = $_POST['message'];
     
-    $sql = "INSERT INTO messages (title, name, email, phone, basis_of_hire, message)
-            VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO messages (title, name, email, phone, message)
+            VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssss", $title, $name, $email, $phone, $basis, $message);
+    $stmt->bind_param("sssss", $title, $name, $email, $phone, $message);
 
     if ($stmt->execute()) {
         header("Location: ../../../contactus.php?success=1");

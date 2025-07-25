@@ -71,10 +71,16 @@
             <div class="mb-3">
               <label for="staffusername" class="form-label">Username</label>
               <input type="text" class="form-control" id="staffusername" name="staffusername" required>
+              <small class="form-text text-muted">
+                Only Letters, numbers, @ symbol and (.)allowed</small>
             </div>
             <div class="mb-3">
               <label for="staffpassword" class="form-label">Password</label>
-              <input type="password" class="form-control" id="staffpassword" name="staffpassword" required>
+              <input type="password" class="form-control" id="staffpassword" name="staffpassword" required 
+                    pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+              <small class="form-text text-muted">
+                Password must be at least 8 characters, include an uppercase letter, 
+                a number, and a symbol</small>
             </div>
             <button type="submit" class="btn btn-primary">Add Staff Member</button>
           </form>
@@ -89,6 +95,22 @@
             window.location.href = '../assets/php/AdminFunctions/Deletestaff.php?id=' + id;
         }
       }
+
+      // script to restrict spaces in staff password
+
+      // const passwordInput = document.getElementById('staffpassword');
+
+      // passwordInput.addEventListener('input', function () {
+      //   // Remove spaces
+      //   this.value = this.value.replace(/\s/g, '');
+      // });
+    const usernameInput = document.getElementById('staffusername');
+
+    usernameInput.addEventListener('input', function () {
+      // Allow only letters, numbers, @, and .
+      this.value = this.value.replace(/[^a-zA-Z0-9@.]/g, '');
+    });
+
     </script>
 
 <?php include 'components/admin_footer.php'; ?>

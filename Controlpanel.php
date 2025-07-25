@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeRide| Admin/Staff Login </title>
+  <title>Prime Ride| Admin/Staff Login </title>
 
   
   
@@ -23,7 +23,7 @@
           <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
             <img src="assets/Photo/logo.png" class="navlogo" alt="">
           </a>
-          <h1>PrimeRide Control Panel</h1>
+          <h1>Prime Ride Control Panel</h1>
         </div>
         <div>
         <a href="index.php" class="btn btn-outline-light">← Back to Home</a>
@@ -80,7 +80,24 @@
 <script>
   setTimeout(function() {
     window.location.href = "assets/php/StaffFunctions/staff_login.php";
-  }, 2000); 
+  }, 2000);
+
+  
+  // const usernameInput = document.getElementById('staffUsername');
+
+  // usernameInput.addEventListener('input', function () {
+  //   // Replace anything that is not a letter, number, @, or .
+  //   this.value = this.value.replace(/[^a-zA-Z0-9@.]/g, '');
+  // });
+
+  // usernameInput.addEventListener('paste', function (e) {
+  //   e.preventDefault();
+  //   const pasteText = (e.clipboardData || window.clipboardData).getData('text');
+  //   const filteredText = pasteText.replace(/[^a-zA-Z0-9@.]/g, '');
+  //   document.execCommand('insertText', false, filteredText);
+  // });
+
+
 </script>
 <?php endif; ?>
 
