@@ -32,7 +32,7 @@
         <div class="col-md-6">
           <h2 class="display-6">About PrimeRide</h2>
           <p class="lead">
-            Welcome to PrimeRide, the leading car rental solution in Sri Lanka. Whether you're exploring the city, planning a road trip, or on a business visit, we provide a fleet of vehicles that suits your every need. From compact cars to luxury sedans, spacious SUVs, and rugged off-road vehicles, PrimeRide has got you covered.
+            Welcome to PrimeRide, the leading car rental solution in Sri Lanka. Whether you're exploring the city, planning a road trip, or on a business visit, we provide a fleet of vehicles that suits your every need. From compact cars to luxury sedans, spacious SUVs, and vans, PrimeRide has got you covered.
           </p>
           <p>
             Our mission is to offer a car rental experience that exceeds customer expectations by focusing on convenience, reliability, and personalized service. With a state-of-the-art online booking system, you can effortlessly browse our fleet, compare options, and secure your rental in minutes. No hidden fees—just transparent pricing and an enjoyable journey ahead.

@@ -1,7 +1,6 @@
 <?php
 
-
-include('../dbconnection.php'); // Make sure the path is correct
+include('../dbconnection.php'); 
 
 if (isset($_GET['rental_id'])) {
     $rental_id = $_GET['rental_id'];
@@ -25,11 +24,11 @@ if (isset($_GET['rental_id'])) {
         echo "<script>alert('Error preparing the delete statement.');</script>";
     }
 
-    // Redirect back to the main page
+    //redirect to myaccount
     header("Location: ../../../profile.php"); 
     exit();
 }
 
-// Close the connection
+
 $conn->close();
 ?>

@@ -43,7 +43,8 @@ session_start();
     }
 
     .faq-body {
-      padding: 50px;
+      padding: 5px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -69,15 +70,13 @@ session_start();
         <h2 class="accordion-header" id="faqHeadingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne"
             aria-expanded="true" aria-controls="faqCollapseOne">
-            1. What is the process for renting a car?
+            1. How do I make a booking?
           </button>
         </h2>
         <div id="faqCollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne"
           data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            To rent a car from Prime Ride, simply browse our selection, select the car that fits your needs, and make a
-            reservation online. You can then pick up the car at our designated location or request a delivery service
-            for an additional fee.
+            You can book a vehicle by logging into your account, selecting a vehicle, and filling out the booking form with your pickup and drop-off dates.
           </div>
         </div>
       </div>
@@ -86,15 +85,13 @@ session_start();
         <h2 class="accordion-header" id="faqHeadingTwo">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo"
             aria-expanded="false" aria-controls="faqCollapseTwo">
-            2. What documents do I need to rent a car?
+            2. Do I need to create an account to book?
           </button>
         </h2>
         <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo"
           data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            You will need a valid driver's license, proof of identification (such as a passport or ID card), and a valid
-            credit or debit card for payment. International travelers must also present their travel documents and an
-            international driving permit if required.
+            Yes, you must sign up and log in to your account to make a booking so we can track your rental history and contact you if needed.
           </div>
         </div>
       </div>
@@ -103,14 +100,13 @@ session_start();
         <h2 class="accordion-header" id="faqHeadingThree">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree"
             aria-expanded="false" aria-controls="faqCollapseThree">
-            3. Are there age restrictions for renting a car?
+            3. What documents do I need?
           </button>
         </h2>
         <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree"
           data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            Yes, renters must be at least 21 years old. Drivers under the age of 25 may incur a young driver surcharge.
-            Some vehicles may also have additional age restrictions.
+            No, you don't.
           </div>
         </div>
       </div>
@@ -119,14 +115,13 @@ session_start();
         <h2 class="accordion-header" id="faqHeadingFour">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFour"
             aria-expanded="false" aria-controls="faqCollapseFour">
-            4. Can I rent a car for long-term use?
+           4. How do I pay for the booking?
           </button>
         </h2>
         <div id="faqCollapseFour" class="accordion-collapse collapse" aria-labelledby="faqHeadingFour"
           data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            Yes, Prime Ride offers long-term car rentals with flexible rates. You can rent a car for weeks or months
-            depending on your need. Please contact us for specific details and pricing.
+           When filling the Rent form you receives Payement Details. You have to transfer 50% from your total rental as Advance payment.
           </div>
         </div>
       </div>
@@ -135,14 +130,13 @@ session_start();
         <h2 class="accordion-header" id="faqHeadingFive">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFive"
             aria-expanded="false" aria-controls="faqCollapseFive">
-            5. What should I do if the car breaks down?
+            5. Can I cancel or change my booking?
           </button>
         </h2>
         <div id="faqCollapseFive" class="accordion-collapse collapse" aria-labelledby="faqHeadingFive"
           data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            In the rare event that your rental car breaks down, contact Prime Ride customer service immediately. We
-            will arrange for roadside assistance and provide you with a replacement vehicle if necessary.
+            Yes, you can contact our support team to request booking changes or cancellations. Make sure to do so before the pickup date.
           </div>
         </div>
       </div>
@@ -158,7 +152,7 @@ session_start();
           data-bs-parent="#faqAccordion">
           <div class="accordion-body">
             Yes, Prime Ride allows one-way rentals. You can return the car to a different location, but additional fees
-            may apply. Please confirm the drop-off location when making your reservation.
+            may apply.
           </div>
         </div>
       </div>
@@ -167,14 +161,13 @@ session_start();
         <h2 class="accordion-header" id="faqHeadingSeven">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseSeven"
             aria-expanded="false" aria-controls="faqCollapseSeven">
-            7. Is insurance included in the rental price?
+            7. Is fuel included in the rental price?
           </button>
         </h2>
         <div id="faqCollapseSeven" class="accordion-collapse collapse" aria-labelledby="faqHeadingSeven"
           data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            Basic insurance coverage is included in the rental price. However, we recommend purchasing additional
-            coverage for peace of mind. Options include collision damage waivers, theft protection, and more.
+            No, fuel is not included. You are expected to return the car with the same fuel level as when you picked it up.
           </div>
         </div>
       </div>
@@ -183,14 +176,13 @@ session_start();
         <h2 class="accordion-header" id="faqHeadingEight">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseEight"
             aria-expanded="false" aria-controls="faqCollapseEight">
-            8. How do I extend my rental period?
+            8. How can I contact Prime Ride support?
           </button>
         </h2>
         <div id="faqCollapseEight" class="accordion-collapse collapse" aria-labelledby="faqHeadingEight"
           data-bs-parent="#faqAccordion">
           <div class="accordion-body">
-            To extend your rental, simply contact Prime Ride customer service before your rental period ends. We will
-            confirm the extension and update your payment details accordingly.
+            You can contact us through the message form on our website or call our hotline number provided in the footer section.
           </div>
         </div>
       </div>

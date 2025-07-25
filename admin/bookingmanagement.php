@@ -37,8 +37,8 @@
           <th>Duration (days)</th>
           <th>Pickup Date</th>
           <th>Dropoff Date</th>
-          <th>Status</th>
-          <th>Actions</th>
+          <th>Rental Status & Actions</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -86,23 +86,21 @@
                             <form method='post' action='../assets/php/AdminFunctions/ViewRentals.php'>
                                 <input type='hidden' name='rental_id' value='{$row['id']}'>
                                 <input type='hidden' name='customer_email' value='{$row['customer_email']}'>
-                            <select class='form-select' name='rental_status'>
-                              <option value='Payment pending' " . ($row['rental_status'] == 'Payment pending' ? 'selected' : '') . ">Payment pending</option>
-                                    <option value='Approved' " . ($row['rental_status'] == 'Approved' ? 'selected' : '') . ">Approved</option> <!-- New option added -->
-                            </select>
-                        </td>
-                        <td>
-                            <button class='btn btn-success ' type='submit'>Update Status</button>
+                                <div class='d-flex flex-column gap-2'>
+                                    <select class='form-select' name='rental_status'>
+                                      <option value='Payment pending' " . ($row['rental_status'] == 'Payment pending' ? 'selected' : '') . ">Payment pending</option>
+                                      <option value='Approved' " . ($row['rental_status'] == 'Approved' ? 'selected' : '') . ">Approved</option>
+                                    </select>
+                                    <button class='btn btn-success' type='submit'>Update Status</button>
+                                </div>
                             </form>
-                        </td>
-                        <td>
-                         <div class='d-flex gap-2'>
-                            <button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#receiptModal' onclick='showReceipt(\"$receiptUrl\")'>View Receipt</button>
-                            <form method='post' action='../assets/php/AdminFunctions/DeleteRental.php' style='display:inline;'>
-                                <input type='hidden' name='rental_id' value='{$row['id']}'>
-                                <button class='btn btn-danger btn-sm' type='submit' onclick='return confirm(\"Are you sure you want to delete this booking?\");'>Delete</button>
-                            </form>
-                              </div>
+                            <div class='d-flex gap-2 mt-2'>
+                                <button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#receiptModal' onclick='showReceipt(\"$receiptUrl\")'>View Receipt</button>
+                                <form method='post' action='../assets/php/AdminFunctions/DeleteRental.php' style='display:inline;'>
+                                    <input type='hidden' name='rental_id' value='{$row['id']}'>
+                                    <button class='btn btn-danger btn-sm' type='submit' onclick='return confirm(\"Are you sure you want to delete this booking?\");'>Delete</button>
+                                </form>
+                            </div>
                         </td>
 
                       </tr>";

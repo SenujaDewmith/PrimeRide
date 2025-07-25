@@ -118,17 +118,21 @@ body {
 }
 
 .carousel-item img {
-  margin-top: 50px;
-  height: 700px;
+  padding-left: 110px;
+  padding-right: 110px;
+  margin-top: 70px;
+  height: 600px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
-.drawer {
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #f5f5f5;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+
+.drawersize {
+  max-width: 9600px; 
+  margin: 0 auto;   
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .footeralign {

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-require '../../vendor/autoload.php';
 include '../dbconnection.php';
 
 $email = $_POST['email'];
@@ -15,9 +14,12 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
     if (password_verify($password, $user['password'])) {
-        
-        session_regenerate_id(true); // prevent session fixation
 
+        // prevent session fixation
+        session_regenerate_id(true);
+
+        //Stores user information email & name in the session
+        
         $_SESSION['email'] = $user['email'];
         $_SESSION['name'] = $user['name']; 
 

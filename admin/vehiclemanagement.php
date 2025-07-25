@@ -116,14 +116,16 @@
                             <option value="">--Select Vehicle Make</option>
                             <option value="BMW">BMW</option>
                             <option value="BENZ">BENZ</option>
-                            <option value="Toyota">Toyota</option>
-                            <option value="Nissan">Nissan</option>
-                            <option value="Mazda">Mazda</option>
-                            <option value="Suzuki">Suzuki</option>
-                            <option value="Peradua">Peradua</option>
-                            <option value="Hyundai">Hyundai</option>
+                            <option value="Toyota">TOYOTA</option>
+                            <option value="Nissan">NISSAN</option>
+                            <option value="Toyota">HONDA</option>
+                            <option value="Toyota">MITZUBISHI</option>
+                            <option value="Mazda">MAZDA</option>
+                            <option value="Suzuki">SUZUKI</option>
+                            <option value="Peradua">PERODUA</option>
+                            <option value="Hyundai">HYUNDAI</option>
                             <option value="KIA">KIA</option>
-                            <option value="Bajaj">Bajaj</option>
+                            <option value="Bajaj">BAJAJ</option>
                         </select>
                     </div>
 
@@ -137,9 +139,10 @@
                         <label for="vehicleType" class="form-label">Vehicle Type</label>
                         <select class="form-select" id="vehicleType" name="vehicle_type" required>
                             <option value="">--Select Vehicle Type--</option>
-                            <option value="Car">Car</option>
-                            <option value="Van">Van</option>
-                            <option value="Mini-Van">Mini Van</option>
+                            <option value="Car">CAR</option>
+                            <option value="Van">VAN</option>
+                            <option value="Van">SUV</option>
+                            <option value="Mini-Van">MINI-VAN</option>
                         </select>
                     </div>
 
@@ -212,14 +215,16 @@
                             <option value="">--Select Vehicle Make</option>
                             <option value="BMW">BMW</option>
                             <option value="BENZ">BENZ</option>
-                            <option value="Toyota">Toyota</option>
-                            <option value="Nissan">Nissan</option>
-                            <option value="Mazda">Mazda</option>
-                            <option value="Suzuki">Suzuki</option>
-                            <option value="Peradua">Peradua</option>
-                            <option value="Hyundai">Hyundai</option>
+                            <option value="Toyota">TOYOTA</option>
+                            <option value="Nissan">NISSAN</option>
+                            <option value="Toyota">HONDA</option>
+                            <option value="Toyota">MITZUBISHI</option>
+                            <option value="Mazda">MAZDA</option>
+                            <option value="Suzuki">SUZUKI</option>
+                            <option value="Peradua">PERODUA</option>
+                            <option value="Hyundai">HYUNDAI</option>
                             <option value="KIA">KIA</option>
-                            <option value="Bajaj">Bajaj</option>
+                            <option value="Bajaj">BAJAJ</option>
                         </select>
                     </div>
 
@@ -233,9 +238,10 @@
                         <label for="update_vehicle_type" class="form-label">Vehicle Type</label>
                         <select class="form-select" id="update_vehicle_type" name="vehicle_type" required>
                             <option value="">--Select Vehicle Type--</option>
-                            <option value="Car">Car</option>
-                            <option value="Van">Van</option>
-                            <option value="Mini-Van">Mini Van</option>
+                            <option value="Car">CAR</option>
+                            <option value="Van">VAN</option>
+                            <option value="Van">SUV</option>
+                            <option value="Mini-Van">MINI-VAN</option>
                         </select>
                     </div>
 
@@ -399,7 +405,7 @@
     if (licensePlateInput) {
         licensePlateInput.addEventListener("input", function () {
             
-            this.value = this.value.replace(/[^A-Za-z0-9]/g, "");
+            this.value = this.value.replace(/[^A-Za-z0-9-]/g, "");
         });
     }
     });
@@ -411,7 +417,7 @@
     if (licensePlateInput) {
         licensePlateInput.addEventListener("input", function () {
             
-            this.value = this.value.replace(/[^A-Za-z0-9]/g, "");
+            this.value = this.value.replace(/[^A-Za-z0-9-]/g, "");
         });
     }
     });

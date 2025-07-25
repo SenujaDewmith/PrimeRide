@@ -32,15 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_file = $target_dir . basename($image_path);
         move_uploaded_file($_FILES['image_path']['tmp_name'], $target_file);
 
-        
+        //with propic updating
         $sql = "UPDATE vehicles SET vehicle_name = ?, model = ?, seats = ?, fuel_type = ?, transmission = ?, license_plate = ?, image_path = ?, price_perday = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssiissssi", $vehicle_name, $model, $seats, $fuel_type, $transmission, $license_plate, $image_path, $price_perday, $id);
+        $stmt->bind_param("ssisssssi", $vehicle_name, $model, $seats, $fuel_type, $transmission, $license_plate, $image_path, $price_perday, $id);
     } else {
         
+        //without propic updating
         $sql = "UPDATE vehicles SET vehicle_name = ?, model = ?, seats = ?, fuel_type = ?, transmission = ?, license_plate = ?, price_perday = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssiisssi", $vehicle_name, $model, $seats, $fuel_type, $transmission, $license_plate, $price_perday, $id);
+        $stmt->bind_param("ssissssi", $vehicle_name, $model, $seats, $fuel_type, $transmission, $license_plate, $price_perday, $id);
     }
 
     if ($stmt->execute()) {

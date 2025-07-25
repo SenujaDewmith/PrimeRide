@@ -1,6 +1,7 @@
 <?php
-require_once('../../tcpdf/tcpdf.php'); // ✅ path to your tcpdf folder
- // Or use require path to tcpdf.php
+//path to tcpdf folder
+require_once('../../tcpdf/tcpdf.php'); 
+
 include '../dbconnection.php';
 
 $startDate = $_POST['start_date'];
