@@ -26,7 +26,7 @@
           <h1>Prime Ride Control Panel</h1>
         </div>
         <div>
-        <a href="index.php" class="btn btn-outline-light">← Back to Home</a>
+        <!-- <a href="index.php" class="btn btn-outline-light">← Back to Home</a> -->
         </div>             
       </div>
     </div>

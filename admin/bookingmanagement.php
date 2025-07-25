@@ -31,7 +31,7 @@
           <th>Rental ID</th>
           <th>Customer</th>
           <th>Email Address</th>
-          <th>Vehicle</th>
+          <!-- <th>Vehicle</th> -->
           <th>Plate Number</th>
           <th>Model</th>
           <th>Duration (days)</th>
@@ -76,7 +76,6 @@
                         <td>{$row['id']}</td>
                         <td>{$row['customer_name']}</td>
                         <td>{$row['customer_email']}</td>
-                        <td>{$row['vehicle_name']}</td>
                         <td>{$row['plate_number']}</td>
                         <td>{$row['model']}</td>
                         <td>{$row['rental_duration']}</td>

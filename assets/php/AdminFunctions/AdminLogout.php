@@ -8,7 +8,7 @@ if (isset($_COOKIE['username'])) {
     
     
 }
-header("Location: ../../../index.php");
+header("Location: ../../../Controlpanel.php");
 exit();
 
 

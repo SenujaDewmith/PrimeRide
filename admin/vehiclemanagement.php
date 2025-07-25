@@ -141,7 +141,7 @@
                             <option value="">--Select Vehicle Type--</option>
                             <option value="Car">CAR</option>
                             <option value="Van">VAN</option>
-                            <option value="Van">SUV</option>
+                            <option value="Suv">SUV</option>
                             <option value="Mini-Van">MINI-VAN</option>
                         </select>
                     </div>
@@ -240,7 +240,7 @@
                             <option value="">--Select Vehicle Type--</option>
                             <option value="Car">CAR</option>
                             <option value="Van">VAN</option>
-                            <option value="Van">SUV</option>
+                            <option value="SUV">SUV</option>
                             <option value="Mini-Van">MINI-VAN</option>
                         </select>
                     </div>

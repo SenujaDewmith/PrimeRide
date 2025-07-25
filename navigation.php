@@ -22,7 +22,7 @@ $is_logged_in = isset($_SESSION['email']) ;
                     <?php else: ?>
                         
                         <a href="authentication.php"><button type="button" class="btn btn-warning">Login / Sign-up</button></a>
-                        <a href="Controlpanel.php"><button type="button" class="btn btn-warning">Admin Login</button></a>
+                        <!-- <a href="Controlpanel.php"><button type="button" class="btn btn-warning">Admin Login</button></a> -->
                     <?php endif; ?>
                 </div>
             </div>
