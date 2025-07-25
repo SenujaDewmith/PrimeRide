@@ -20,19 +20,24 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
             <img src="assets/Photo/logo.png" class="navlogo" alt="">
           </a>
           <h1>PrimeRide Control Panel</h1>
-        </div>               
+        </div>
+        <div>
+        <a href="index.php" class="btn btn-outline-light">← Back to Home</a>
+        </div>             
       </div>
     </div>
   </header>
 
+  
+
 <!-- Login Form -->
 
 <div class="formst">
-  <div class="container mt-5">
+  <div class="container mt-0 pt-0">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="card shadow-sm">

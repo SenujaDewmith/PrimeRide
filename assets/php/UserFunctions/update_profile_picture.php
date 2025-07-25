@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['profilePicUpload']))
     // Move uploaded file
     if (move_uploaded_file($file["tmp_name"], $target_file)) {
 
-        // Update the database using email (not name!)
+        
         $stmt = $conn->prepare("UPDATE clients SET profile_picture = ? WHERE email = ?");
         if (!$stmt) {
             die("Database error: " . $conn->error);

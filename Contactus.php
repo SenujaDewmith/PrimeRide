@@ -49,10 +49,9 @@ session_start();
 
 <body>
   <!-- Navigation Bar -->
-  <?php include 'navigation.php'; ?>
-  <div class="content mt-5"> <h1> 
+<?php include 'navigation.php'; ?>
 
-
+<div class="content mt-5"> <h1> 
   </h1> <br><br><br>
   </div>
   <div class="container mt-5 " >

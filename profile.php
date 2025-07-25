@@ -70,7 +70,7 @@ if ($hour < 12) {
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between">
             <div class="d-flex align-items-center">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                     <img src="assets/Photo/logo.png" class="navlogo" alt="">
                 </a>
                 <h1>PrimeRide</h1>
@@ -82,8 +82,6 @@ if ($hour < 12) {
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">
                 Logout
                 </button>
-
-                <!-- <a href="assets/php/UserFunctions/logout.php" class="btn btn-danger">Logout</a> -->
             </div>
         </div>
     </div>
@@ -95,7 +93,6 @@ if ($hour < 12) {
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>        
                 <li class="nav-item"><a href="rent-car.php" class="nav-link">Select A Vehicle</a></li>
-                <li class="nav-item"><a href="Specialoffers.php" class="nav-link">Offers</a></li>
                 <li class="nav-item"><a href="FAQ.php" class="nav-link">FAQ</a></li>
                 <li class="nav-item"><a href="Aboutus.php" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="Contactus.php" class="nav-link">Contact Us</a></li>
@@ -305,11 +302,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 </div>
 
-<?php include 'footer.php'; ?>
-
-
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
 <script>
 document.querySelectorAll('.update-btn').forEach(button => {
     button.addEventListener('click', function() {
@@ -334,7 +326,9 @@ document.querySelectorAll('.delete-btn').forEach(button => {
 });
 </script>
 
-        <script defer src="assets/js/bootstrap.bundle.min.js"></script>
+<?php include 'footer.php'; ?>
+
+<script defer src="assets/js/bootstrap.bundle.min.js"></script>
         
 </body>
 </html>

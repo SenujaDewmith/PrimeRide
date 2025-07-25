@@ -130,6 +130,7 @@
                     <div class="mb-3">
                         <label for="model" class="form-label">Model</label>
                         <input type="text" class="form-control" id="model" name="model" required>
+                        <small class="form-text text-muted">Only letters, numbers, and hyphen (-) allowed</small>
                     </div>
 
                     <div class="mb-3">
@@ -169,12 +170,13 @@
 
                     <div class="mb-3">
                         <label for="licensePlate" class="form-label">License Plate</label>
-                        <input type="text" class="form-control" id="licensePlate" name="license_plate" placeholder="Only letters and numbers are allowed" required >
+                        <input type="text" class="form-control" id="licensePlate" name="license_plate" placeholder="Ex-AB-1111" required >
+                        <small class="form-text text-muted">Only letters, numbers, and hyphen (-) allowed</small>
                     </div>
 
                     <div class="mb-3">
                         <label for="pricePerDay" class="form-label">Price per Day (LKR)</label>
-                        <input type="number" step="100.00" class="form-control" id="pricePerDay" name="price_perday" min="1" required>
+                        <input type="number" step="100" class="form-control" id="pricePerDay" name="price_perday" min="100" required>
                     </div>
 
                     <div class="mb-3">
@@ -224,6 +226,7 @@
                     <div class="mb-3">
                         <label for="update_model" class="form-label">Model</label>
                         <input type="text" class="form-control" id="update_model" name="model" required>
+                        <small class="form-text text-muted">Only letters, numbers, and hyphen (-) allowed</small>
                     </div>
 
                     <div class="mb-3">
@@ -264,6 +267,7 @@
                     <div class="mb-3">
                         <label for="update_license_plate" class="form-label">License Plate</label>
                         <input type="text" class="form-control" id="update_license_plate" name="license_plate" required>
+                        <small class="form-text text-muted">Only letters, numbers, and hyphen (-) allowed</small>
                     </div>
                     <div class="mb-3">
                         <label for="update_price_perday" class="form-label">Price per Day (LKR)</label>
@@ -335,11 +339,7 @@
   </div>
 </div>
 
-
-
-
 <script>
-
     //JavaScript to Update Modal
     function populateUpdateModal(vehicle) {
         document.getElementById('update_vehicle_id').value = vehicle.id;
@@ -367,6 +367,30 @@
             this.value = '';
         }
     });
+
+    //scriipt to validate model input field
+  
+    document.addEventListener("DOMContentLoaded", function () {
+        const modelInput = document.getElementById("model");
+
+        if (modelInput) {
+        modelInput.addEventListener("input", function () {
+            this.value = this.value.replace(/[^A-Za-z0-9\-]/g, "");
+        });
+        }
+    });
+
+    //scriipt to validate update model input field
+     document.addEventListener("DOMContentLoaded", function () {
+        const modelInput = document.getElementById("update_model");
+
+        if (modelInput) {
+        modelInput.addEventListener("input", function () {
+            this.value = this.value.replace(/[^A-Za-z0-9\-]/g, "");
+        });
+        }
+    });
+
   
     //script to validate input in licence plate field
     document.addEventListener("DOMContentLoaded", function () {
@@ -379,6 +403,20 @@
         });
     }
     });
+
+    //script to validate input in update licence plate field
+    document.addEventListener("DOMContentLoaded", function () {
+    const licensePlateInput = document.getElementById("update_license_plate");
+
+    if (licensePlateInput) {
+        licensePlateInput.addEventListener("input", function () {
+            
+            this.value = this.value.replace(/[^A-Za-z0-9]/g, "");
+        });
+    }
+    });
+
+
 
 
     document.addEventListener("DOMContentLoaded", function () {
