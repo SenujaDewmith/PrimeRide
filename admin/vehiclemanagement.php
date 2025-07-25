@@ -115,14 +115,14 @@
                         <select class="form-select" id="vehicleMake" name="vehicle_make" required>
                             <option value="">--Select Vehicle Make</option>
                             <option value="BMW">BMW</option>
-                            <option value="BENZ">BENZ</option>
+                            <option value="Benz">BENZ</option>
                             <option value="Toyota">TOYOTA</option>
                             <option value="Nissan">NISSAN</option>
-                            <option value="Toyota">HONDA</option>
-                            <option value="Toyota">MITZUBISHI</option>
+                            <option value="Honda">HONDA</option>
+                            <option value="Mitzubishi">MITZUBISHI</option>
                             <option value="Mazda">MAZDA</option>
                             <option value="Suzuki">SUZUKI</option>
-                            <option value="Peradua">PERODUA</option>
+                            <option value="Perodua">PERODUA</option>
                             <option value="Hyundai">HYUNDAI</option>
                             <option value="KIA">KIA</option>
                             <option value="Bajaj">BAJAJ</option>
@@ -214,14 +214,14 @@
                         <select class="form-select" id="update_vehicle_make" name="vehicle_make" required>
                             <option value="">--Select Vehicle Make</option>
                             <option value="BMW">BMW</option>
-                            <option value="BENZ">BENZ</option>
+                            <option value="Benz">BENZ</option>
                             <option value="Toyota">TOYOTA</option>
                             <option value="Nissan">NISSAN</option>
-                            <option value="Toyota">HONDA</option>
-                            <option value="Toyota">MITZUBISHI</option>
+                            <option value="Honda">HONDA</option>
+                            <option value="Mitzubishi">MITZUBISHI</option>
                             <option value="Mazda">MAZDA</option>
                             <option value="Suzuki">SUZUKI</option>
-                            <option value="Peradua">PERODUA</option>
+                            <option value="Perodua">PERODUA</option>
                             <option value="Hyundai">HYUNDAI</option>
                             <option value="KIA">KIA</option>
                             <option value="Bajaj">BAJAJ</option>
@@ -240,7 +240,7 @@
                             <option value="">--Select Vehicle Type--</option>
                             <option value="Car">CAR</option>
                             <option value="Van">VAN</option>
-                            <option value="SUV">SUV</option>
+                            <option value="Suv">SUV</option>
                             <option value="Mini-Van">MINI-VAN</option>
                         </select>
                     </div>

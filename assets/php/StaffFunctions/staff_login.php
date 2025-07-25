@@ -7,9 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
   
-    if ($username === 'admin' && $password === 'admin') {
+    if ($username === 'Prasanna@primeride' && $password === 'Prasanna@123') {
    
-        $_SESSION['user_role'] = 'admin';
+        $_SESSION['user_role'] = 'Prasanna@primeride';
         $_SESSION['username'] = $username;
 
         header('Location: ../../../admin/vehiclemanagement.php');

@@ -77,9 +77,9 @@ if (isset($_SESSION['email'])) {
       <h2 class="text-center mb-4">Available Vehicles</h2>
       <div class="row">
         <hr>
-        <!-- added code here -->
-        
-        <!-- to here -->
+      <!-- added code here -->
+
+      <!-- to here -->
          
         <?php
 
