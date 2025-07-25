@@ -199,6 +199,7 @@ if (isset($_SESSION['email'])) {
               <input type="text" class="form-control" name="total_price" id="totalPrice" readonly>
             </div>
 
+
             <div class="mb-3 p-3 bg-light border rounded">
               <h6 class="fw-bold">Advance Payment Instructions</h6>
               <p class="mb-1">Please make an advance payment of <strong>50% of the total rental amount</strong> to the bank account below:</p>
@@ -350,7 +351,7 @@ if (isset($_SESSION['email'])) {
           
           if (pricePerDay > 0) {
               const totalPrice = duration * pricePerDay;
-              totalPriceInput.value = totalPrice.toFixed(2);
+              totalPriceInput.value = totalPrice.toFixed(2);//here
           }
       });
   });
@@ -391,7 +392,7 @@ if (isset($_SESSION['email'])) {
                     document.getElementById('modalPlateNumber').value = plateNumber;
 
                     
-                    document.getElementById('totalPrice').value = ""; 
+                    document.getElementById('totalPrice').value = ""; //here
 
                     const rentModal = new bootstrap.Modal(document.getElementById('rentModal'), {
                         backdrop: 'static', 

@@ -474,3 +474,61 @@ $pdf->Output('Staff_Feedback_Report.pdf', 'I');
 ?>
 
 <!-- Feedback END -->
+
+
+
+
+<!-- half tot calculat start-->
+ <div class="mb-3">
+  <label for="advance_payment" class="form-label">Advance Payment (50%)</label>
+  <input type="text" class="form-control" name="advance_payment" id="advancePayment" readonly>
+</div>
+
+Inside the second  block (where you're already calculating totalPrice), add this line after setting the total price:
+
+
+<script>totalPriceInput.value = totalPrice.toFixed(2);//after this
+
+document.getElementById('advancePayment').value = (totalPrice / 2).toFixed(2);//add this only
+
+document.getElementById('advancePayment').value = "";//wherever resetting price
+// full script
+if (pricePerDay > 0) {
+    const totalPrice = duration * pricePerDay;
+    totalPriceInput.value = totalPrice.toFixed(2);
+    document.getElementById('advancePayment').value = (totalPrice / 2).toFixed(2);
+}
+
+</script>
+
+<!-- end half pay -->
+
+
+
+<!-- add column -->
+
+
+ALTER TABLE staff_feedback
+ADD feedback_type VARCHAR(100);
+
+ALTER TABLE staff_feedback ADD created_at DATE;
+
+// Add status with default value	
+ALTER TABLE staff_feedback ADD status VARCHAR(20) DEFAULT 'pending';
+
+
+
+UPDATE staff_feedback
+SET feedback_type = 'Complaint'
+WHERE id = 1;
+
+CREATE TABLE staff_feedback (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(20),
+    message TEXT NOT NULL,
+    submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+

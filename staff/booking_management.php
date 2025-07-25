@@ -78,11 +78,7 @@
                                     <input type='hidden' name='id' value='{$row['id']}'>
                                     <input type='hidden' name='client_id' value='{$row['client_id']}'>
                                     <select class='form-select form-select-sm' name='rental_status'>
-                                        <option value='Available' " . ($row['rental_status'] == 'Available' ? 'selected' : '') . ">Available</option>
-                                        <option value='Out' " . ($row['rental_status'] == 'Out' ? 'selected' : '') . ">Out</option>
                                         <option value='Payment pending' " . ($row['rental_status'] == 'Payment pending' ? 'selected' : '') . ">Payment pending</option>
-                                        <option value='Processing' " . ($row['rental_status'] == 'Processing' ? 'selected' : '') . ">Processing</option>
-                                        <option value='In service' " . ($row['rental_status'] == 'In service' ? 'selected' : '') . ">In service</option>
                                         <option value='Approved' " . ($row['rental_status'] == 'Approved' ? 'selected' : '') . ">Approved</option>
                                     </select>
                             </td>
