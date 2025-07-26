@@ -14,8 +14,9 @@
         }
 
         .content-wrapper {
-            margin-left: 220px; /* Adjust to match your sidebar width */
-            padding: 40px 20px;
+            padding-right: 50px;
+            margin-left: 300px; 
+            
         }
 
         .booking h2 {
@@ -28,13 +29,11 @@
     </style>
 </head>
 <body>
-<!-- DB Connection -->
+
 <?php include '../assets/php/dbconnection.php'; ?>
 
-<!-- Header -->
 <?php include 'components/staff_header.php'; ?>
 
-<!-- Sidebar -->
 <?php include 'components/staff_sidebar.php'; ?>
 
 <!-- Main Content -->
@@ -122,7 +121,7 @@
     </div>
 </div>
 
-<!-- JavaScript -->
+
 <script>
 function showReceipt(receiptUrl) {
     var receiptContent = document.getElementById("receiptContent");

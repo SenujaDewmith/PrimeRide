@@ -1,6 +1,6 @@
 .sidebar {
   position: fixed;
-  top: 70px; /* Adjust if your header is taller/shorter */
+  top: 70px; 
   left: 0;
   width: 220px;
   height: calc(100vh - 70px);

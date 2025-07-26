@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Ride | sStaff Dashboard | Feedbacks</title>
+    <title>Prime Ride | Staff Dashboard | Feedbacks</title>
     <link rel="stylesheet" href="css/staff.css">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <style>
@@ -16,7 +16,7 @@
         }
 
         .content-wrapper {
-            margin-left: 220px; /* Adjust to match your sidebar width */
+            margin-left: 220px; 
             padding: 40px 20px;
         }
 

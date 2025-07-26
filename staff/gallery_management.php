@@ -6,21 +6,26 @@
   <title>Prime Ride | Staff Dashboard | Gallery</title>
   <link rel="stylesheet" href="css/staff.css">
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+
+  <style>
+    .gallery-container{
+      padding-top: 40px;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- header -->
   <?php include 'components/staff_header.php'; ?>
 
   <div class="main-wrapper">
-    <!-- Sidebar -->
+
     <?php include 'components/staff_sidebar.php'; ?>
 
     <!-- Main Content Area -->
     <div class="content">
       <?php include '../assets/php/dbconnection.php'; ?>
 
-      <div class="gallery-container">
+      <div class="gallery-container ">
         <h2>Gallery Management</h2>
         
         <!-- Form for uploading images -->

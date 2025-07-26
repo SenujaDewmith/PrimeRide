@@ -16,7 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssss", $title, $name, $email, $phone, $message);
 
     if ($stmt->execute()) {
-        header("Location: ../../../contactus.php?success=1");
+
+        echo "<script>
+                alert('Feedback Submitted successfully!');
+                window.location.href = '../../../contactus.php';
+                </script>";
+        // header("Location: ../../../contactus.php?success=1");
     } else {
         header("Location: ../../../contactus.php?error=1");
     }

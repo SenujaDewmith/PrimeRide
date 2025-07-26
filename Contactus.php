@@ -9,8 +9,6 @@ session_start();
 
 <head>
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <script defer src="assets/js/bootstrap.bundle.min.js"></script>
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="assets/css/style.css" />
@@ -22,7 +20,7 @@ session_start();
       font-family: Arial, sans-serif;
       background-color: #f7f7f7;
       margin-top: 200px;
-      /* margin-bottom: 200px; */
+      
     }
 
     .form-section {
@@ -165,6 +163,8 @@ session_start();
     referrerpolicy="no-referrer-when-downgrade">
             
   </iframe> -->
+
+  <script defer src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
